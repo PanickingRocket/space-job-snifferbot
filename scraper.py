@@ -84,10 +84,19 @@ def save_seen_jobs(seen: dict) -> None:
         json.dump(seen, f, indent=2, ensure_ascii=False)
 
 
-def load_companies() -> list:
+def load_companies() -> tuple[list, list]:
+    """Ritorna (companies, global_keywords)."""
     with open(COMPANIES_FILE, encoding="utf-8") as f:
         data = json.load(f)
-    return [e for e in data if e.get("name") and not e.get("_disabled")]
+
+    global_keywords = []
+    companies = []
+    for entry in data:
+        if "_global_keywords" in entry:
+            global_keywords = entry["_global_keywords"]
+        elif entry.get("name") and not entry.get("_disabled"):
+            companies.append(entry)
+    return companies, global_keywords
 
 
 def make_job_id(title: str, url: str) -> str:
@@ -97,10 +106,32 @@ def make_job_id(title: str, url: str) -> str:
 # ─── Filtro keywords ──────────────────────────────────────────────────────────
 
 def matches_keywords(title: str, keywords: list) -> bool:
+    """
+    Ritorna True se il titolo contiene almeno una keyword.
+    Lista vuota = nessun filtro (tutte le posizioni passano).
+    """
     if not keywords:
         return True
     t = title.lower()
     return any(kw.lower() in t for kw in keywords)
+
+
+def get_effective_keywords(entry: dict, global_keywords: list) -> list:
+    """
+    Unisce le keywords globali con quelle specifiche dell'azienda.
+    Le keywords per-azienda si AGGIUNGONO alle globali (non le sostituiscono).
+    Se vuoi ignorare le globali per un'azienda specifica, aggiungi
+    "override_global_keywords": true e metti le keywords desiderate.
+    """
+    company_kws = entry.get("keywords", [])
+    if entry.get("override_global_keywords"):
+        return company_kws
+    # Unione senza duplicati, preservando l'ordine
+    merged = list(global_keywords)
+    for kw in company_kws:
+        if kw not in merged:
+            merged.append(kw)
+    return merged
 
 
 # ─── Scrapers ─────────────────────────────────────────────────────────────────
@@ -267,10 +298,9 @@ def scrape_pinpoint(company_slug: str, keywords: list) -> list:
         return []
 
 
-def scrape_generic(entry: dict) -> list:
+def scrape_generic(entry: dict, keywords: list) -> list:
     url       = entry["url"]
     selector  = entry.get("selector", "")
-    keywords  = entry.get("keywords", [])
     base_url  = entry.get("base_url", "")
     title_sel = entry.get("title_selector")
     link_sel  = entry.get("link_selector")
@@ -306,48 +336,100 @@ def scrape_generic(entry: dict) -> list:
 
 # ─── Dispatcher ───────────────────────────────────────────────────────────────
 
-def fetch_jobs(entry: dict) -> list:
-    ats      = entry.get("ats", "generic").lower()
-    keywords = entry.get("keywords", [])
+def fetch_jobs(entry: dict, keywords: list) -> list:
+    ats = entry.get("ats", "generic").lower()
     dispatch = {
-        "greenhouse":     lambda: scrape_greenhouse(entry["company_id"], keywords),
-        "lever":          lambda: scrape_lever(entry["company_id"], keywords),
-        "smartrecruiters":lambda: scrape_smartrecruiters(entry["company_id"], keywords),
-        "workday":        lambda: scrape_workday(entry["url"], keywords),
-        "workable":       lambda: scrape_workable(entry["company_id"], keywords),
-        "personio":       lambda: scrape_personio(entry["company_id"], keywords),
-        "bamboohr":       lambda: scrape_bamboohr(entry["company_id"], keywords),
-        "recruitee":      lambda: scrape_recruitee(entry["company_id"], keywords),
-        "pinpoint":       lambda: scrape_pinpoint(entry["company_id"], keywords),
+        "greenhouse":      lambda: scrape_greenhouse(entry["company_id"], keywords),
+        "lever":           lambda: scrape_lever(entry["company_id"], keywords),
+        "smartrecruiters": lambda: scrape_smartrecruiters(entry["company_id"], keywords),
+        "workday":         lambda: scrape_workday(entry["url"], keywords),
+        "workable":        lambda: scrape_workable(entry["company_id"], keywords),
+        "personio":        lambda: scrape_personio(entry["company_id"], keywords),
+        "bamboohr":        lambda: scrape_bamboohr(entry["company_id"], keywords),
+        "recruitee":       lambda: scrape_recruitee(entry["company_id"], keywords),
+        "pinpoint":        lambda: scrape_pinpoint(entry["company_id"], keywords),
     }
-    return dispatch.get(ats, lambda: scrape_generic(entry))()
+    return dispatch.get(ats, lambda: scrape_generic(entry, keywords))()
+
+
+# ─── Deduplication intelligente ───────────────────────────────────────────────
+#
+# LOGICA:
+#   seen_jobs[company] = { job_id: { title, url, first_seen, last_seen } }
+#
+#   Ad ogni run:
+#   1. Recupera i job ATTUALMENTE online per questa azienda
+#   2. Calcola i job_id correnti
+#   3. Notifica solo i job che NON erano in seen_jobs
+#   4. RIMUOVE da seen_jobs i job che non sono più online
+#      → se un job viene rimosso e ripostato in futuro, verrà notificato di nuovo ✓
+#   5. Aggiorna last_seen per i job ancora online
+
+def update_seen_and_find_new(
+    company_seen: dict, current_jobs: list
+) -> tuple[dict, list]:
+    """
+    Ritorna (company_seen aggiornato, lista di job nuovi).
+    """
+    current_ids = {}
+    for job in current_jobs:
+        jid = make_job_id(job["title"], job["url"])
+        current_ids[jid] = job
+
+    new_jobs = []
+    now = datetime.now().isoformat()
+
+    # Trova i nuovi
+    for jid, job in current_ids.items():
+        if jid not in company_seen:
+            new_jobs.append(job)
+            company_seen[jid] = {
+                "title":      job["title"],
+                "url":        job["url"],
+                "first_seen": now,
+                "last_seen":  now,
+            }
+        else:
+            # Aggiorna last_seen per i job già noti ancora online
+            company_seen[jid]["last_seen"] = now
+
+    # Rimuovi i job che non sono più online
+    # (così se ricompaiono in futuro verranno notificati come nuovi)
+    stale_ids = [jid for jid in company_seen if jid not in current_ids]
+    for jid in stale_ids:
+        removed = company_seen.pop(jid)
+        print(f"    ↩ Rimossa posizione non più online: {removed['title']}")
+
+    return company_seen, new_jobs
 
 
 # ─── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
     print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Avvio controllo jobs...")
-    companies = load_companies()
+
+    companies, global_keywords = load_companies()
     seen_jobs = load_seen_jobs()
     all_new   = []
 
-    print(f"Aziende da controllare: {len(companies)}\n")
+    print(f"Aziende da controllare: {len(companies)}")
+    print(f"Keywords globali attive: {len(global_keywords)}\n")
 
     for entry in companies:
-        name = entry.get("name", "?")
+        name     = entry.get("name", "?")
+        keywords = get_effective_keywords(entry, global_keywords)
         print(f"  → {name}")
-        current_jobs = fetch_jobs(entry)
-        print(f"     {len(current_jobs)} posizioni trovate")
+
+        current_jobs = fetch_jobs(entry, keywords)
+        print(f"     {len(current_jobs)} posizioni trovate (dopo filtro keywords)")
 
         company_seen = seen_jobs.get(name, {})
-        for job in current_jobs:
-            jid = make_job_id(job["title"], job["url"])
-            if jid not in company_seen:
-                print(f"     🆕 {job['title']}")
-                company_seen[jid] = {"title": job["title"], "url": job["url"],
-                                     "found": datetime.now().isoformat()}
-                send_new_job_notification(name, job["title"], job["url"])
-                all_new.append({"company": name, **job})
+        company_seen, new_jobs = update_seen_and_find_new(company_seen, current_jobs)
+
+        for job in new_jobs:
+            print(f"     🆕 {job['title']}")
+            send_new_job_notification(name, job["title"], job["url"])
+            all_new.append({"company": name, **job})
 
         seen_jobs[name] = company_seen
 
