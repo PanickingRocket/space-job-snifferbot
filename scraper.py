@@ -84,19 +84,22 @@ def save_seen_jobs(seen: dict) -> None:
         json.dump(seen, f, indent=2, ensure_ascii=False)
 
 
-def load_companies() -> tuple[list, list]:
-    """Ritorna (companies, global_keywords)."""
+def load_companies() -> tuple[list, list, list]:
+    """Ritorna (companies, global_keywords, global_exclude_keywords)."""
     with open(COMPANIES_FILE, encoding="utf-8") as f:
         data = json.load(f)
 
     global_keywords = []
+    global_exclude  = []
     companies = []
     for entry in data:
         if "_global_keywords" in entry:
             global_keywords = entry["_global_keywords"]
-        elif entry.get("name") and not entry.get("_disabled"):
+        if "_global_exclude_keywords" in entry:
+            global_exclude = entry["_global_exclude_keywords"]
+        if entry.get("name") and not entry.get("_disabled"):
             companies.append(entry)
-    return companies, global_keywords
+    return companies, global_keywords, global_exclude
 
 
 def make_job_id(title: str, url: str) -> str:
@@ -105,38 +108,54 @@ def make_job_id(title: str, url: str) -> str:
 
 # ─── Filtro keywords ──────────────────────────────────────────────────────────
 
-def matches_keywords(title: str, keywords: list) -> bool:
+def matches_keywords(title: str, keywords: list, exclude: list = []) -> bool:
     """
-    Ritorna True se il titolo contiene almeno una keyword.
-    Lista vuota = nessun filtro (tutte le posizioni passano).
+    Ritorna True se il titolo contiene almeno una keyword E non contiene
+    nessuna delle parole da escludere.
+    keywords vuota = nessun filtro inclusivo (tutte le posizioni passano).
+    exclude vuota = nessun filtro esclusivo.
     """
+    t = title.lower()
+    # Prima controlla le esclusioni — se matcha una, scarta subito
+    if any(ex.lower() in t for ex in exclude):
+        return False
+    # Poi applica il filtro inclusivo
     if not keywords:
         return True
-    t = title.lower()
     return any(kw.lower() in t for kw in keywords)
 
 
-def get_effective_keywords(entry: dict, global_keywords: list) -> list:
+def get_effective_keywords(entry: dict, global_keywords: list, global_exclude: list) -> tuple:
     """
-    Unisce le keywords globali con quelle specifiche dell'azienda.
-    Le keywords per-azienda si AGGIUNGONO alle globali (non le sostituiscono).
-    Se vuoi ignorare le globali per un'azienda specifica, aggiungi
-    "override_global_keywords": true e metti le keywords desiderate.
+    Ritorna (keywords_effettive, exclude_effettive) per questa azienda.
+    Le keywords per-azienda si AGGIUNGONO alle globali.
+    Le exclude per-azienda si AGGIUNGONO alle globali.
+    Con 'override_global_keywords': true si usano solo quelle per-azienda.
     """
-    company_kws = entry.get("keywords", [])
+    company_kws  = entry.get("keywords", [])
+    company_excl = entry.get("exclude_keywords", [])
+
     if entry.get("override_global_keywords"):
-        return company_kws
-    # Unione senza duplicati, preservando l'ordine
-    merged = list(global_keywords)
+        return company_kws, company_excl
+
+    # Unione keywords senza duplicati
+    merged_kws = list(global_keywords)
     for kw in company_kws:
-        if kw not in merged:
-            merged.append(kw)
-    return merged
+        if kw not in merged_kws:
+            merged_kws.append(kw)
+
+    # Unione exclude senza duplicati
+    merged_excl = list(global_exclude)
+    for ex in company_excl:
+        if ex not in merged_excl:
+            merged_excl.append(ex)
+
+    return merged_kws, merged_excl
 
 
 # ─── Scrapers ─────────────────────────────────────────────────────────────────
 
-def scrape_greenhouse(company_id: str, keywords: list) -> list:
+def scrape_greenhouse(company_id: str, keywords: list, exclude: list) -> list:
     url = f"https://boards-api.greenhouse.io/v1/boards/{company_id}/jobs"
     try:
         r = requests.get(url, timeout=15, headers=HEADERS)
@@ -144,14 +163,14 @@ def scrape_greenhouse(company_id: str, keywords: list) -> list:
         jobs = r.json().get("jobs", [])
         return [
             {"title": j["title"], "url": j["absolute_url"]}
-            for j in jobs if matches_keywords(j["title"], keywords)
+            for j in jobs if matches_keywords(j["title"], keywords, exclude)
         ]
     except Exception as e:
         print(f"    [ERROR] Greenhouse ({company_id}): {e}")
         return []
 
 
-def scrape_lever(company_id: str, keywords: list) -> list:
+def scrape_lever(company_id: str, keywords: list, exclude: list) -> list:
     url = f"https://api.lever.co/v0/postings/{company_id}?mode=json"
     try:
         r = requests.get(url, timeout=15, headers=HEADERS)
@@ -159,14 +178,14 @@ def scrape_lever(company_id: str, keywords: list) -> list:
         jobs = r.json()
         return [
             {"title": j["text"], "url": j["hostedUrl"]}
-            for j in jobs if matches_keywords(j["text"], keywords)
+            for j in jobs if matches_keywords(j["text"], keywords, exclude)
         ]
     except Exception as e:
         print(f"    [ERROR] Lever ({company_id}): {e}")
         return []
 
 
-def scrape_smartrecruiters(company_id: str, keywords: list) -> list:
+def scrape_smartrecruiters(company_id: str, keywords: list, exclude: list) -> list:
     url = f"https://api.smartrecruiters.com/v1/companies/{company_id}/postings?limit=100"
     try:
         r = requests.get(url, timeout=15, headers=HEADERS)
@@ -177,7 +196,7 @@ def scrape_smartrecruiters(company_id: str, keywords: list) -> list:
             title = j.get("name", "")
             jid = j.get("id", "")
             job_url = f"https://jobs.smartrecruiters.com/{company_id}/{jid}"
-            if matches_keywords(title, keywords):
+            if matches_keywords(title, keywords, exclude):
                 results.append({"title": title, "url": job_url})
         return results
     except Exception as e:
@@ -185,7 +204,7 @@ def scrape_smartrecruiters(company_id: str, keywords: list) -> list:
         return []
 
 
-def scrape_workday(base_url: str, keywords: list) -> list:
+def scrape_workday(base_url: str, keywords: list, exclude: list) -> list:
     try:
         r = requests.get(base_url, timeout=20, headers=HEADERS)
         soup = BeautifulSoup(r.text, "html.parser")
@@ -195,7 +214,7 @@ def scrape_workday(base_url: str, keywords: list) -> list:
             href = a.get("href", "")
             if href and not href.startswith("http"):
                 href = urljoin(base_url, href)
-            if title and matches_keywords(title, keywords):
+            if title and matches_keywords(title, keywords, exclude):
                 jobs.append({"title": title, "url": href})
         return jobs
     except Exception as e:
@@ -203,7 +222,7 @@ def scrape_workday(base_url: str, keywords: list) -> list:
         return []
 
 
-def scrape_workable(company_id: str, keywords: list) -> list:
+def scrape_workable(company_id: str, keywords: list, exclude: list) -> list:
     url = f"https://apply.workable.com/api/v3/accounts/{company_id}/jobs"
     try:
         r = requests.post(url, json={"limit": 100, "offset": 0}, timeout=15, headers=HEADERS)
@@ -214,7 +233,7 @@ def scrape_workable(company_id: str, keywords: list) -> list:
             title = j.get("title", "")
             slug = j.get("shortcode", "")
             job_url = f"https://apply.workable.com/{company_id}/j/{slug}/"
-            if matches_keywords(title, keywords):
+            if matches_keywords(title, keywords, exclude):
                 results.append({"title": title, "url": job_url})
         return results
     except Exception as e:
@@ -222,7 +241,7 @@ def scrape_workable(company_id: str, keywords: list) -> list:
         return []
 
 
-def scrape_personio(company_slug: str, keywords: list) -> list:
+def scrape_personio(company_slug: str, keywords: list, exclude: list) -> list:
     url = f"https://{company_slug}.jobs.personio.de/api/v1/positions"
     try:
         r = requests.get(url, timeout=15, headers={**HEADERS, "Accept": "application/json"})
@@ -233,7 +252,7 @@ def scrape_personio(company_slug: str, keywords: list) -> list:
             title = j.get("name", "")
             jid = j.get("id", "")
             job_url = f"https://{company_slug}.jobs.personio.de/job/{jid}"
-            if matches_keywords(title, keywords):
+            if matches_keywords(title, keywords, exclude):
                 results.append({"title": title, "url": job_url})
         return results
     except Exception as e:
@@ -241,7 +260,7 @@ def scrape_personio(company_slug: str, keywords: list) -> list:
         return []
 
 
-def scrape_bamboohr(company_slug: str, keywords: list) -> list:
+def scrape_bamboohr(company_slug: str, keywords: list, exclude: list) -> list:
     url = f"https://{company_slug}.bamboohr.com/careers/list"
     try:
         r = requests.get(url, timeout=15, headers={**HEADERS, "Accept": "application/json"})
@@ -252,7 +271,7 @@ def scrape_bamboohr(company_slug: str, keywords: list) -> list:
             title = j.get("jobOpeningName", "")
             jid = j.get("id", "")
             job_url = f"https://{company_slug}.bamboohr.com/careers/{jid}"
-            if matches_keywords(title, keywords):
+            if matches_keywords(title, keywords, exclude):
                 results.append({"title": title, "url": job_url})
         return results
     except Exception as e:
@@ -260,7 +279,7 @@ def scrape_bamboohr(company_slug: str, keywords: list) -> list:
         return []
 
 
-def scrape_recruitee(company_slug: str, keywords: list) -> list:
+def scrape_recruitee(company_slug: str, keywords: list, exclude: list) -> list:
     url = f"https://{company_slug}.recruitee.com/api/offers/"
     try:
         r = requests.get(url, timeout=15, headers=HEADERS)
@@ -271,7 +290,7 @@ def scrape_recruitee(company_slug: str, keywords: list) -> list:
             title = j.get("title", "")
             slug = j.get("slug", "")
             job_url = f"https://{company_slug}.recruitee.com/o/{slug}"
-            if matches_keywords(title, keywords):
+            if matches_keywords(title, keywords, exclude):
                 results.append({"title": title, "url": job_url})
         return results
     except Exception as e:
@@ -279,7 +298,7 @@ def scrape_recruitee(company_slug: str, keywords: list) -> list:
         return []
 
 
-def scrape_pinpoint(company_slug: str, keywords: list) -> list:
+def scrape_pinpoint(company_slug: str, keywords: list, exclude: list) -> list:
     url = f"https://{company_slug}.pinpointhq.com/api/v1/jobs"
     try:
         r = requests.get(url, timeout=15, headers={**HEADERS, "Accept": "application/json"})
@@ -290,7 +309,7 @@ def scrape_pinpoint(company_slug: str, keywords: list) -> list:
             attrs = j.get("attributes", {})
             title = attrs.get("title", "")
             job_url = attrs.get("job_ad_url", f"https://{company_slug}.pinpointhq.com")
-            if matches_keywords(title, keywords):
+            if matches_keywords(title, keywords, exclude):
                 results.append({"title": title, "url": job_url})
         return results
     except Exception as e:
@@ -298,7 +317,7 @@ def scrape_pinpoint(company_slug: str, keywords: list) -> list:
         return []
 
 
-def scrape_generic(entry: dict, keywords: list) -> list:
+def scrape_generic(entry: dict, keywords: list, exclude: list) -> list:
     url       = entry["url"]
     selector  = entry.get("selector", "")
     base_url  = entry.get("base_url", "")
@@ -326,7 +345,7 @@ def scrape_generic(entry: dict, keywords: list) -> list:
                 href = base_url.rstrip("/") + "/" + href.lstrip("/")
             if not href:
                 href = url
-            if title and matches_keywords(title, keywords):
+            if title and matches_keywords(title, keywords, exclude):
                 jobs.append({"title": title, "url": href})
         return jobs
     except Exception as e:
@@ -336,20 +355,20 @@ def scrape_generic(entry: dict, keywords: list) -> list:
 
 # ─── Dispatcher ───────────────────────────────────────────────────────────────
 
-def fetch_jobs(entry: dict, keywords: list) -> list:
+def fetch_jobs(entry: dict, keywords: list, exclude: list) -> list:
     ats = entry.get("ats", "generic").lower()
     dispatch = {
-        "greenhouse":      lambda: scrape_greenhouse(entry["company_id"], keywords),
-        "lever":           lambda: scrape_lever(entry["company_id"], keywords),
-        "smartrecruiters": lambda: scrape_smartrecruiters(entry["company_id"], keywords),
-        "workday":         lambda: scrape_workday(entry["url"], keywords),
-        "workable":        lambda: scrape_workable(entry["company_id"], keywords),
-        "personio":        lambda: scrape_personio(entry["company_id"], keywords),
-        "bamboohr":        lambda: scrape_bamboohr(entry["company_id"], keywords),
-        "recruitee":       lambda: scrape_recruitee(entry["company_id"], keywords),
-        "pinpoint":        lambda: scrape_pinpoint(entry["company_id"], keywords),
+        "greenhouse":      lambda: scrape_greenhouse(entry["company_id"], keywords, exclude),
+        "lever":           lambda: scrape_lever(entry["company_id"], keywords, exclude),
+        "smartrecruiters": lambda: scrape_smartrecruiters(entry["company_id"], keywords, exclude),
+        "workday":         lambda: scrape_workday(entry["url"], keywords, exclude),
+        "workable":        lambda: scrape_workable(entry["company_id"], keywords, exclude),
+        "personio":        lambda: scrape_personio(entry["company_id"], keywords, exclude),
+        "bamboohr":        lambda: scrape_bamboohr(entry["company_id"], keywords, exclude),
+        "recruitee":       lambda: scrape_recruitee(entry["company_id"], keywords, exclude),
+        "pinpoint":        lambda: scrape_pinpoint(entry["company_id"], keywords, exclude),
     }
-    return dispatch.get(ats, lambda: scrape_generic(entry, keywords))()
+    return dispatch.get(ats, lambda: scrape_generic(entry, keywords, exclude))()
 
 
 # ─── Deduplication intelligente ───────────────────────────────────────────────
@@ -408,19 +427,20 @@ def update_seen_and_find_new(
 def main():
     print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Avvio controllo jobs...")
 
-    companies, global_keywords = load_companies()
+    companies, global_keywords, global_exclude = load_companies()
     seen_jobs = load_seen_jobs()
     all_new   = []
 
     print(f"Aziende da controllare: {len(companies)}")
-    print(f"Keywords globali attive: {len(global_keywords)}\n")
+    print(f"Keywords globali attive: {len(global_keywords)}")
+    print(f"Exclude globali attive:  {len(global_exclude)}\n")
 
     for entry in companies:
-        name     = entry.get("name", "?")
-        keywords = get_effective_keywords(entry, global_keywords)
+        name             = entry.get("name", "?")
+        keywords, exclude = get_effective_keywords(entry, global_keywords, global_exclude)
         print(f"  → {name}")
 
-        current_jobs = fetch_jobs(entry, keywords)
+        current_jobs = fetch_jobs(entry, keywords, exclude)
         print(f"     {len(current_jobs)} posizioni trovate (dopo filtro keywords)")
 
         company_seen = seen_jobs.get(name, {})

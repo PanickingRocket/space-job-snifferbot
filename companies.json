@@ -3,8 +3,10 @@
     "_info": "COME FUNZIONANO LE KEYWORDS",
     "_info2": "Le global_keywords si applicano a TUTTE le aziende automaticamente.",
     "_info3": "Le keywords per-azienda si AGGIUNGONO alle globali (non le sostituiscono).",
-    "_info4": "Per ignorare le keywords globali su un'azienda specifica, aggiungi 'override_global_keywords': true e specifica le keywords che vuoi.",
-    "_info5": "selector 'TODO' = azienda skippata finché non configurata. '_disabled': true = azienda esclusa permanentemente.",
+    "_info4": "Per ignorare le globali su un'azienda specifica: 'override_global_keywords': true.",
+    "_info5": "Le global_exclude_keywords filtrano via i titoli che le contengono (case-insensitive).",
+    "_info6": "Puoi aggiungere 'exclude_keywords' per-azienda: si sommano alle globali.",
+    "_info7": "selector 'TODO' = azienda skippata. '_disabled': true = esclusa permanentemente.",
 
     "_global_keywords": [
       "GNC",
@@ -40,6 +42,18 @@
       "LEOP",
       "orbit determination",
       "maneuver"
+    ],
+
+    "_global_exclude_keywords": [
+      "senior",
+      "lead",
+      "principal",
+      "staff engineer",
+      "manager",
+      "director",
+      "head of",
+      "vp ",
+      "vice president"
     ]
   },
 
