@@ -317,6 +317,28 @@ def scrape_pinpoint(company_slug: str, keywords: list, exclude: list) -> list:
         return []
 
 
+def scrape_factorial(company_slug: str, tld: str, keywords: list, exclude: list) -> list:
+    """Factorial HR — usato da D-Orbit (factorial.it), Opus Aerospace (factorial.fr), ecc."""
+    base = f"https://{company_slug}.{tld}"
+    try:
+        r = requests.get(base, timeout=20, headers=HEADERS)
+        soup = BeautifulSoup(r.text, "html.parser")
+        jobs = []
+        # I link alle posizioni hanno sempre /job_posting/ nel path
+        for a in soup.find_all("a", href=lambda h: h and "/job_posting/" in h):
+            title = a.get_text(strip=True)
+            href = a["href"]
+            if not href.startswith("http"):
+                href = base + href
+            # Escludi il link "Open application" generico
+            if title and title.lower() != "apply now" and matches_keywords(title, keywords, exclude):
+                jobs.append({"title": title, "url": href})
+        return jobs
+    except Exception as e:
+        print(f"    [ERROR] Factorial ({company_slug}.{tld}): {e}")
+        return []
+
+
 def scrape_generic(entry: dict, keywords: list, exclude: list) -> list:
     url       = entry["url"]
     selector  = entry.get("selector", "")
@@ -367,6 +389,7 @@ def fetch_jobs(entry: dict, keywords: list, exclude: list) -> list:
         "bamboohr":        lambda: scrape_bamboohr(entry["company_id"], keywords, exclude),
         "recruitee":       lambda: scrape_recruitee(entry["company_id"], keywords, exclude),
         "pinpoint":        lambda: scrape_pinpoint(entry["company_id"], keywords, exclude),
+        "factorial":       lambda: scrape_factorial(entry["company_slug"], entry.get("tld", "factorialhr.com"), keywords, exclude),
     }
     return dispatch.get(ats, lambda: scrape_generic(entry, keywords, exclude))()
 

@@ -84,8 +84,7 @@
   {"name": "Constellr",             "ats": "recruitee","company_id": "constellr"},
   {"name": "CS Group",              "ats": "smartrecruiters","company_id": "SopraSteria1"},
 
-  {"name": "D-Orbit",               "ats": "generic",  "url": "https://careers.dorbit.space/jobs.php",      "selector": "TODO"},
-  {"name": "Darwin Recruitment",    "ats": "generic",  "url": "https://www.darwinrecruitment.com/",          "selector": "TODO"},
+  {"name": "D-Orbit", "ats": "factorial", "company_slug": "dorbit-space", "tld": "factorial.it"},  {"name": "Darwin Recruitment",    "ats": "generic",  "url": "https://www.darwinrecruitment.com/",          "selector": "TODO"},
   {"name": "DCUBED",                "ats": "personio", "company_id": "dcubed"},
   {"name": "Deimos",                "ats": "generic",  "url": "https://elecnor-deimos.com/jobs/",            "selector": "TODO"},
   {"name": "Demexios",              "ats": "generic",  "url": "https://demexios.com/jobs/",                  "selector": "TODO"},
@@ -151,13 +150,11 @@
   {"name": "Okapi Orbits",          "ats": "generic",  "url": "https://www.okapiorbits.space/career",        "selector": "TODO"},
   {"name": "Omnidea",               "ats": "generic",  "url": "https://omnidea.net/careers/",               "selector": "TODO"},
   {"name": "Open Cosmos",           "ats": "generic",  "url": "https://careers.open-cosmos.com/jobs",        "selector": "TODO"},
-  {"name": "Opus Aerospace",        "ats": "generic",  "url": "https://opus-aerospace.factorial.fr/",        "selector": "TODO"},
-  {"name": "Orbex",                 "ats": "generic",  "url": "https://orbex.space/work-with-us/current-vacancies","selector": "TODO"},
+  {"name": "Opus Aerospace", "ats": "factorial", "company_slug": "opus-aerospace", "tld": "factorial.fr"},
   {"name": "Orbital Critical Systems","ats": "generic","url": "https://caf.teamtailor.com/jobs",             "selector": "TODO"},
   {"name": "OroraTech",             "ats": "generic",  "url": "https://ororatech.com/company/careers",       "selector": "TODO"},
 
-  {"name": "Pangea Propulsion",     "ats": "generic",  "url": "https://pangeapropulsion.factorialhr.com/",  "selector": "TODO"},
-  {"name": "Planetek",              "ats": "generic",  "url": "https://www.planetek.it/azienda/contatti/opportunita_di_lavoro","selector": "TODO"},
+  {"name": "Pangea Propulsion", "ats": "factorial", "company_slug": "pangeapropulsion", "tld": "factorialhr.com"},  {"name": "Planetek",              "ats": "generic",  "url": "https://www.planetek.it/azienda/contatti/opportunita_di_lavoro","selector": "TODO"},
   {"name": "PLD Space",             "ats": "generic",  "url": "https://www.pldspace.com/en/pld-space-open-positions/","selector": "TODO"},
 
   {"name": "RedWire Space",         "ats": "generic",  "url": "https://careers.redwirespace.com/jobs/search","selector": "TODO"},
