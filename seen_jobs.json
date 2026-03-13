@@ -13,193 +13,48 @@
   "Argotec": {},
   "ASI": {},
   "Astroscale": {
-    "5ce01ae1bf1f43f8925fae54b2ff3cc7": {
-      "title": "シニアGNCエンジニア /Senior GNC Engineer",
-      "url": "https://astroscale.bamboohr.com/careers/33",
-      "first_seen": "2026-03-13T13:38:18.124100",
-      "last_seen": "2026-03-13T13:38:18.124100"
-    },
-    "393315737294d186d739c26f4ec25974": {
-      "title": "シニア電気システムエンジニア/ Senior Electrical Systems Engineer",
-      "url": "https://astroscale.bamboohr.com/careers/333",
-      "first_seen": "2026-03-13T13:38:18.124100",
-      "last_seen": "2026-03-13T13:38:18.124100"
-    },
     "2eeeb49d66b1e62edfa1583c204bb964": {
       "title": "GNCエンジニア /Guidance Navigation and Control Engineer",
       "url": "https://astroscale.bamboohr.com/careers/356",
       "first_seen": "2026-03-13T13:38:18.124100",
-      "last_seen": "2026-03-13T13:38:18.124100"
+      "last_seen": "2026-03-13T17:35:06.879151"
     },
     "6dc1590b1b80d795cae022584fde1ec7": {
       "title": "サテライトシステムエンジニア /Satellite System Enginner",
       "url": "https://astroscale.bamboohr.com/careers/548",
       "first_seen": "2026-03-13T13:38:18.124100",
-      "last_seen": "2026-03-13T13:38:18.124100"
+      "last_seen": "2026-03-13T17:35:06.879151"
     },
     "6e39c40180bd5e7dc5a9fdd52f007f60": {
       "title": "Ground Segment Systems Engineer",
       "url": "https://astroscale.bamboohr.com/careers/590",
       "first_seen": "2026-03-13T13:38:18.124100",
-      "last_seen": "2026-03-13T13:38:18.124100"
+      "last_seen": "2026-03-13T17:35:06.879151"
     },
     "53ea85f50496e6fb9b513d6209940f99": {
       "title": "Space Systems Engineer (M/F)",
       "url": "https://astroscale.bamboohr.com/careers/593",
       "first_seen": "2026-03-13T13:38:18.124100",
-      "last_seen": "2026-03-13T13:38:18.124100"
+      "last_seen": "2026-03-13T17:35:06.879151"
     },
     "1cb9dae4be524eb10d598fbd0706c071": {
       "title": "GNCハードウェアエンジニア/ GNC Hardware Engineer",
       "url": "https://astroscale.bamboohr.com/careers/598",
       "first_seen": "2026-03-13T13:38:18.124100",
-      "last_seen": "2026-03-13T13:38:18.124100"
+      "last_seen": "2026-03-13T17:35:06.879151"
     },
     "810d286ee3ec882de83a9ee5bc909a4f": {
       "title": "AIV Engineer - Computer Vision & GNC (M/F)",
       "url": "https://astroscale.bamboohr.com/careers/610",
       "first_seen": "2026-03-13T13:38:18.124100",
-      "last_seen": "2026-03-13T13:38:18.124100"
+      "last_seen": "2026-03-13T17:35:06.879151"
     }
   },
   "Avio": {},
   "Beyond Gravity": {},
   "Boeing": {},
   "Capgemini": {},
-  "CesiumAstro": {
-    "a074f9f429c10f969ceb7f35429b9d55": {
-      "title": "Principal Communication Systems Engineer I",
-      "url": "https://jobs.lever.co/CesiumAstro/2b56eeb2-b8c8-4fb0-bee3-63fbcb0911cd",
-      "first_seen": "2026-03-13T13:38:26.526627",
-      "last_seen": "2026-03-13T13:38:26.526627"
-    },
-    "caa7622e111743246adc17fdecfb6ba5": {
-      "title": "Principal Communication Systems Engineer I",
-      "url": "https://jobs.lever.co/CesiumAstro/96809cf2-abc4-4f67-bf71-64d52c9c05fd",
-      "first_seen": "2026-03-13T13:38:26.526627",
-      "last_seen": "2026-03-13T13:38:26.526627"
-    },
-    "1884fc60144e030537ad656b237fdddd": {
-      "title": "Principal Communication Systems Engineer I",
-      "url": "https://jobs.lever.co/CesiumAstro/9ca82a7c-afb1-4393-a633-a7f447b78848",
-      "first_seen": "2026-03-13T13:38:26.526627",
-      "last_seen": "2026-03-13T13:38:26.526627"
-    },
-    "77efffb5b5c6b6bafd127e801910669e": {
-      "title": "Principal Communication Systems Engineer I - Networking",
-      "url": "https://jobs.lever.co/CesiumAstro/cae46b53-f43f-4341-bba5-4d6618ecc5c8",
-      "first_seen": "2026-03-13T13:38:26.526627",
-      "last_seen": "2026-03-13T13:38:26.526627"
-    },
-    "3f505c74a951587ec0bce58a8f9718c3": {
-      "title": "Principal Communication Systems Engineer I - Networking",
-      "url": "https://jobs.lever.co/CesiumAstro/cde2ffbb-ba72-4057-8db5-18c5d424326a",
-      "first_seen": "2026-03-13T13:38:26.526627",
-      "last_seen": "2026-03-13T13:38:26.526627"
-    },
-    "cc6462211dc836d373ebb09077a471eb": {
-      "title": "Principal Communication Systems Engineer I - Networking",
-      "url": "https://jobs.lever.co/CesiumAstro/f7aea005-9fbf-4278-a640-8ea7203c4eb3",
-      "first_seen": "2026-03-13T13:38:26.526627",
-      "last_seen": "2026-03-13T13:38:26.526627"
-    },
-    "c05e3fa490d66ee89639ee7e2db85f90": {
-      "title": "Principal Communication Systems Engineer II",
-      "url": "https://jobs.lever.co/CesiumAstro/8a53c477-76f4-45ae-b283-e8f2847469c5",
-      "first_seen": "2026-03-13T13:38:26.526627",
-      "last_seen": "2026-03-13T13:38:26.526627"
-    },
-    "a34398b9f7107680bf2f1205b540516b": {
-      "title": "Principal GNC Engineer I",
-      "url": "https://jobs.lever.co/CesiumAstro/207d836f-9d9f-47c9-9fac-a5a90895c1ef",
-      "first_seen": "2026-03-13T13:38:26.526627",
-      "last_seen": "2026-03-13T13:38:26.526627"
-    },
-    "5d2f96dc2c0812691e513f67b12572f1": {
-      "title": "Principal GNC Engineer I",
-      "url": "https://jobs.lever.co/CesiumAstro/82a4d7bd-b433-4b85-ba15-67bd3b08b0e5",
-      "first_seen": "2026-03-13T13:38:26.526627",
-      "last_seen": "2026-03-13T13:38:26.526627"
-    },
-    "995070a4de7e75b69a9e79a87fea0f9d": {
-      "title": "Principal GNC Engineer I",
-      "url": "https://jobs.lever.co/CesiumAstro/bf90891a-b6fe-4708-907d-524d172eae06",
-      "first_seen": "2026-03-13T13:38:26.526627",
-      "last_seen": "2026-03-13T13:38:26.526627"
-    },
-    "80ab72af13a13ca8879ab50f3938f687": {
-      "title": "Principal Spacecraft Communication Systems Engineer I",
-      "url": "https://jobs.lever.co/CesiumAstro/b060ac80-9bae-4fb0-9fd6-67df4cd40bc1",
-      "first_seen": "2026-03-13T13:38:26.526627",
-      "last_seen": "2026-03-13T13:38:26.526627"
-    },
-    "99f1185587d31c37395bbcf812cd3b44": {
-      "title": "Principal Spacecraft Communication Systems Engineer I",
-      "url": "https://jobs.lever.co/CesiumAstro/b3dcb695-4e46-431f-8207-9083aecf2494",
-      "first_seen": "2026-03-13T13:38:26.526627",
-      "last_seen": "2026-03-13T13:38:26.526627"
-    },
-    "c5d88b5de48ed48bace7677b175dea7d": {
-      "title": "Principal Spacecraft Communication Systems Engineer I",
-      "url": "https://jobs.lever.co/CesiumAstro/bc66d334-b7a5-4f73-b1ff-5db47822182e",
-      "first_seen": "2026-03-13T13:38:26.526627",
-      "last_seen": "2026-03-13T13:38:26.526627"
-    },
-    "8ecaa0aa42966e31fe854f2e199e92ee": {
-      "title": "Principal Spacecraft Systems Engineer II - Mission SEIT",
-      "url": "https://jobs.lever.co/CesiumAstro/3a94f416-e62a-40b0-9725-f15513089b47",
-      "first_seen": "2026-03-13T13:38:26.526627",
-      "last_seen": "2026-03-13T13:38:26.526627"
-    },
-    "bfeb24df504fec2a7159cb4548c6fbdd": {
-      "title": "Principal Systems Engineer I",
-      "url": "https://jobs.lever.co/CesiumAstro/7822e9f0-ba65-4afd-88b5-8b5c22d27fbe",
-      "first_seen": "2026-03-13T13:38:26.526627",
-      "last_seen": "2026-03-13T13:38:26.526627"
-    },
-    "552e01ce9c68ad6c4108196785608507": {
-      "title": "Senior Communication Systems Engineer II",
-      "url": "https://jobs.lever.co/CesiumAstro/80204c70-8978-42ae-9027-58b5162763ef",
-      "first_seen": "2026-03-13T13:38:26.526627",
-      "last_seen": "2026-03-13T13:38:26.526627"
-    },
-    "54ad21687ac7996700e25fd1c50c6f4a": {
-      "title": "Senior Flight Dynamics Engineer II",
-      "url": "https://jobs.lever.co/CesiumAstro/8b281e8f-6644-4689-8803-9abd6d597c3d",
-      "first_seen": "2026-03-13T13:38:26.526627",
-      "last_seen": "2026-03-13T13:38:26.526627"
-    },
-    "fac4b8a0fd0e31da2d96e84b4a771f58": {
-      "title": "Senior GNC Engineer I",
-      "url": "https://jobs.lever.co/CesiumAstro/8f265595-4e44-4ed3-b87d-372d31204e33",
-      "first_seen": "2026-03-13T13:38:26.526627",
-      "last_seen": "2026-03-13T13:38:26.526627"
-    },
-    "af7536182731178666ff38509bf96d26": {
-      "title": "Senior GNC Engineer I",
-      "url": "https://jobs.lever.co/CesiumAstro/e4e34c71-d060-493c-90e6-f1de709fc191",
-      "first_seen": "2026-03-13T13:38:26.526627",
-      "last_seen": "2026-03-13T13:38:26.526627"
-    },
-    "b9bdd38e1cbbe4d4e6035d47c1650cc7": {
-      "title": "Senior GNC Engineer I",
-      "url": "https://jobs.lever.co/CesiumAstro/fabe3733-69e4-45c8-be3d-65119dccc955",
-      "first_seen": "2026-03-13T13:38:26.526627",
-      "last_seen": "2026-03-13T13:38:26.526627"
-    },
-    "e237c355f490a370498c3f35f2cd9040": {
-      "title": "Senior Spacecraft Systems Engineer II",
-      "url": "https://jobs.lever.co/CesiumAstro/8423faa8-5d67-4b37-a102-68cc62160e93",
-      "first_seen": "2026-03-13T13:38:26.526627",
-      "last_seen": "2026-03-13T13:38:26.526627"
-    },
-    "9369dad7f091443335a0c5bb76c35d60": {
-      "title": "Senior Systems Engineer II - Digital Mission Modeling and Simulation",
-      "url": "https://jobs.lever.co/CesiumAstro/07f3cdfd-28cd-4c85-a16d-18480388a844",
-      "first_seen": "2026-03-13T13:38:26.526627",
-      "last_seen": "2026-03-13T13:38:26.526627"
-    }
-  },
+  "CesiumAstro": {},
   "CLC Space": {},
   "Collins Aerospace": {},
   "Comat": {},
@@ -209,13 +64,7 @@
       "title": "DevOps / Systems Engineer – Clever Cloud On‑Prem Deployment & Operations",
       "url": "https://jobs.smartrecruiters.com/SopraSteria1/744000114650707",
       "first_seen": "2026-03-13T13:38:35.285653",
-      "last_seen": "2026-03-13T13:38:35.285653"
-    },
-    "a513f4e3760e1333d3e1ae73f69b6583": {
-      "title": "Metop Spacecraft Operations Engineer [26048]",
-      "url": "https://jobs.smartrecruiters.com/SopraSteria1/744000114042548",
-      "first_seen": "2026-03-13T13:38:35.285653",
-      "last_seen": "2026-03-13T13:38:35.285653"
+      "last_seen": "2026-03-13T17:35:09.571419"
     }
   },
   "D-Orbit": {},
@@ -255,19 +104,19 @@
       "title": "IT Systems Engineer / IT & Infrastructure Specialist – Space Programs",
       "url": "https://jobs.lever.co/ispace-inc/f4b1cca0-f1dc-40b0-abce-e191ee45e244",
       "first_seen": "2026-03-13T13:38:42.174444",
-      "last_seen": "2026-03-13T13:38:42.174444"
+      "last_seen": "2026-03-13T17:35:12.785622"
     },
     "9f7c61ed4a6e1c6f48cde8ede87d5a20": {
       "title": "Propulsion System Engineer",
       "url": "https://jobs.lever.co/ispace-inc/e6d49552-fdfc-46bc-b9e8-3bbd24930ad0",
       "first_seen": "2026-03-13T13:38:42.174444",
-      "last_seen": "2026-03-13T13:38:42.174444"
+      "last_seen": "2026-03-13T17:35:12.785622"
     },
     "2c417613a0c2a372efe95fa44ba35ce5": {
       "title": "RF / Communications Systems Engineer",
       "url": "https://jobs.lever.co/ispace-inc/c9521745-f5e5-4b64-b84f-c0ba5315c63a",
       "first_seen": "2026-03-13T13:38:42.174444",
-      "last_seen": "2026-03-13T13:38:42.174444"
+      "last_seen": "2026-03-13T17:35:12.785622"
     }
   },
   "Kayser Italia": {},
@@ -282,37 +131,25 @@
       "title": "Backend Engineer - Mission Operations Services",
       "url": "https://jobs.lever.co/loftorbital/c6ac5dfa-5292-483c-adff-a8f17e79b7f5",
       "first_seen": "2026-03-13T13:38:46.338009",
-      "last_seen": "2026-03-13T13:38:46.338009"
+      "last_seen": "2026-03-13T17:35:19.193658"
     },
     "0bdf24b91d11939f6a01dd851fb7b5cd": {
       "title": "RF System Engineer",
       "url": "https://jobs.lever.co/loftorbital/5b19f777-fcaf-43fa-8dad-747df1dc5acc",
       "first_seen": "2026-03-13T13:38:46.338009",
-      "last_seen": "2026-03-13T13:38:46.338009"
+      "last_seen": "2026-03-13T17:35:19.193658"
     },
     "e8e14e585235b6f71e75c7c9b7a8638b": {
       "title": "RF Systems Engineer",
       "url": "https://jobs.lever.co/loftorbital/c642da08-aa5c-494b-91b3-38f0b2e5f079",
       "first_seen": "2026-03-13T13:38:46.338009",
-      "last_seen": "2026-03-13T13:38:46.338009"
+      "last_seen": "2026-03-13T17:35:19.193658"
     },
     "5cb5dd336184ec6e02ec4928e05411aa": {
       "title": "Satellite Operations Software Engineer",
       "url": "https://jobs.lever.co/loftorbital/664a2c37-e865-479c-ba51-2d946c8f209e",
       "first_seen": "2026-03-13T13:38:46.338009",
-      "last_seen": "2026-03-13T13:38:46.338009"
-    },
-    "c503c2233024a8db90d7cbd11a08f91e": {
-      "title": "Senior Electrical Systems Engineer",
-      "url": "https://jobs.lever.co/loftorbital/4fc6ad27-050a-4d1b-aaa2-26a08760e53d",
-      "first_seen": "2026-03-13T13:38:46.338009",
-      "last_seen": "2026-03-13T13:38:46.338009"
-    },
-    "e378f55b5d2b46690e633f2cd4d1c59a": {
-      "title": "Senior Satellite Systems Engineer",
-      "url": "https://jobs.lever.co/loftorbital/766b1990-b9ff-40f5-959d-ad7a652e8bf9",
-      "first_seen": "2026-03-13T13:38:46.338009",
-      "last_seen": "2026-03-13T13:38:46.338009"
+      "last_seen": "2026-03-13T17:35:19.193658"
     }
   },
   "Look Up Space": {},
