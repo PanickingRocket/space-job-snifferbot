@@ -318,21 +318,47 @@ def scrape_pinpoint(company_slug: str, keywords: list, exclude: list) -> list:
 
 
 def scrape_factorial(company_slug: str, tld: str, keywords: list, exclude: list) -> list:
-    """Factorial HR — usato da D-Orbit (factorial.it), Opus Aerospace (factorial.fr), ecc."""
+    """Factorial HR — usato da D-Orbit (factorial.it), Opus Aerospace (factorial.fr), ecc.
+
+    Struttura HTML Factorial:
+      <li>
+        <span>Job Title</span>   ← titolo in un elemento separato
+        <span>Hybrid</span>
+        <a href="/job_posting/slug-123">Apply now</a>   ← link con /job_posting/
+      </li>
+    """
     base = f"https://{company_slug}.{tld}"
     try:
         r = requests.get(base, timeout=20, headers=HEADERS)
         soup = BeautifulSoup(r.text, "html.parser")
         jobs = []
-        # I link alle posizioni hanno sempre /job_posting/ nel path
+        seen_urls = set()
+
         for a in soup.find_all("a", href=lambda h: h and "/job_posting/" in h):
-            title = a.get_text(strip=True)
             href = a["href"]
             if not href.startswith("http"):
                 href = base + href
-            # Escludi il link "Open application" generico
-            if title and title.lower() != "apply now" and matches_keywords(title, keywords, exclude):
+
+            # Evita duplicati (stesso URL)
+            if href in seen_urls:
+                continue
+            seen_urls.add(href)
+
+            # Risali al genitore (li o div) e prendi il primo testo significativo
+            # che non sia "Apply now" o testo di metadati brevi (es. "Hybrid")
+            parent = a.parent
+            title = ""
+            for candidate in parent.find_all(string=True, recursive=True):
+                text = candidate.strip()
+                if (text
+                        and text.lower() not in ("apply now", "hybrid", "on-site", "remote", "")
+                        and len(text) > 5):
+                    title = text
+                    break
+
+            if title and matches_keywords(title, keywords, exclude):
                 jobs.append({"title": title, "url": href})
+
         return jobs
     except Exception as e:
         print(f"    [ERROR] Factorial ({company_slug}.{tld}): {e}")
