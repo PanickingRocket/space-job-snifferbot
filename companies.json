@@ -95,7 +95,7 @@
   {"name": "All.Space",             "ats": "workable", "company_id": "allspace"},
   {"name": "Altec",                 "ats": "generic",  "url": "https://www.altecspace.it/it/lavora-con-noi/","selector": "TODO"},
   {"name": "Antwerp Space",         "ats": "generic",  "url": "https://jobpage.cvwarehouse.com/?companyGuid=cb184417-1e4e-4b70-850f-be503d361263&lang=en-US","selector": "TODO"},
-  {"name": "Argotec",               "ats": "generic",  "url": "https://www.argotecgroup.com/careers/",      "selector": "TODO"},
+  {"name": "Argotec",               "ats": "generic",  "url": "https://www.space-careers.com/jobs_at/argotec/11785", "selector": "h3 a", "base_url": "https://www.space-careers.com"},
   {"name": "ASI",                   "ats": "generic",  "url": "https://www.asi.it/bandi-e-concorsi/",       "selector": "TODO"},
   {"name": "Astroscale",            "ats": "bamboohr", "company_id": "astroscale"},
   {"name": "Avio",                  "ats": "generic",  "url": "https://zinrec.intervieweb.it/avio/en/career","selector": "TODO"},
