@@ -365,12 +365,88 @@ def scrape_factorial(company_slug: str, tld: str, keywords: list, exclude: list)
         return []
 
 
+def scrape_teamtailor(base_url: str, keywords: list, exclude: list) -> list:
+    """Teamtailor ATS — usato da Revolv Space, Orbital Critical Systems, ecc.
+
+    Struttura HTML Teamtailor (/jobs page):
+      <a href="/jobs/1234567-job-title">Job Title</a>
+      Il titolo è il testo del link stesso, l'ID numerico è sempre presente nell'href.
+    """
+    import re
+    jobs_url = base_url.rstrip("/") + "/jobs"
+    try:
+        r = requests.get(jobs_url, timeout=20, headers=HEADERS)
+        soup = BeautifulSoup(r.text, "html.parser")
+        jobs = []
+        seen_urls = set()
+        # Teamtailor: href sempre della forma /jobs/[digits]-[slug]
+        for a in soup.find_all("a", href=re.compile(r"/jobs/\d+")):
+            title = a.get_text(strip=True)
+            href  = a["href"]
+            if not href.startswith("http"):
+                href = base_url.rstrip("/") + href
+            if href in seen_urls or not title:
+                continue
+            seen_urls.add(href)
+            if matches_keywords(title, keywords, exclude):
+                jobs.append({"title": title, "url": href})
+        return jobs
+    except Exception as e:
+        print(f"    [ERROR] Teamtailor ({base_url}): {e}")
+        return []
+
+
+def scrape_teamtailor(url: str, keywords: list, exclude: list) -> list:
+    """Teamtailor — usato da Revolv Space, Orbital Critical Systems, ecc.
+    I job link hanno il titolo direttamente come testo del tag <a>.
+    """
+    try:
+        r = requests.get(url, timeout=20, headers=HEADERS)
+        soup = BeautifulSoup(r.text, "html.parser")
+        jobs = []
+        seen_urls = set()
+        parsed = urlparse(url)
+        base = f"{parsed.scheme}://{parsed.netloc}"
+
+        for a in soup.find_all("a", href=lambda h: h and "/jobs/" in h):
+            title = a.get_text(strip=True)
+            href = a["href"]
+            if not href.startswith("http"):
+                href = base + href
+            # Salta link generici senza titolo reale
+            if not title or title.lower() in ("apply", "view job", "apply now", ""):
+                continue
+            if href in seen_urls:
+                continue
+            seen_urls.add(href)
+            if matches_keywords(title, keywords, exclude):
+                jobs.append({"title": title, "url": href})
+        return jobs
+    except Exception as e:
+        print(f"    [ERROR] Teamtailor ({url}): {e}")
+        return []
+
+
 def scrape_generic(entry: dict, keywords: list, exclude: list) -> list:
-    url       = entry["url"]
-    selector  = entry.get("selector", "")
-    base_url  = entry.get("base_url", "")
-    title_sel = entry.get("title_selector")
-    link_sel  = entry.get("link_selector")
+    """Scraper generico via CSS selector.
+
+    Campi supportati in companies.json:
+      url           — pagina da visitare
+      selector      — CSS selector per ogni job listing (elemento "card")
+      title_selector — (opzionale) CSS selector del titolo DENTRO l'elemento
+      link_selector  — (opzionale) CSS selector del link DENTRO l'elemento
+      sibling_link_selector — (opzionale) CSS selector del link come FRATELLO
+                               dell'elemento selezionato (utile per Wix e simili
+                               dove titolo e link sono elementi separati allo stesso
+                               livello, es. <h2>Titolo</h2> ... <a>View Job</a>)
+      base_url      — (opzionale) prefisso per link relativi
+    """
+    url                = entry["url"]
+    selector           = entry.get("selector", "")
+    base_url           = entry.get("base_url", "")
+    title_sel          = entry.get("title_selector")
+    link_sel           = entry.get("link_selector")
+    title_from_heading = entry.get("title_from_heading", False)
 
     if not selector or selector == "TODO":
         print(f"    [SKIP] Selector non configurato — visita manualmente: {url}")
@@ -380,19 +456,35 @@ def scrape_generic(entry: dict, keywords: list, exclude: list) -> list:
         r = requests.get(url, timeout=20, headers=HEADERS)
         soup = BeautifulSoup(r.text, "html.parser")
         jobs = []
+        seen_urls = set()
+
         for el in soup.select(selector):
-            title = (el.select_one(title_sel).get_text(strip=True)
-                     if title_sel and el.select_one(title_sel)
-                     else el.get_text(strip=True))
+            # ── Titolo ──────────────────────────────────────────────────────
+            if title_from_heading:
+                # Titolo in heading (h1/h2/h3) precedente al link (es. Wix)
+                heading = el.find_previous(["h1", "h2", "h3"])
+                title = heading.get_text(strip=True) if heading else ""
+            elif title_sel:
+                t_el  = el.select_one(title_sel)
+                title = t_el.get_text(strip=True) if t_el else el.get_text(strip=True)
+            else:
+                title = el.get_text(strip=True)
+
+            # ── Link ────────────────────────────────────────────────────────
             if link_sel:
                 l_el = el.select_one(link_sel)
                 href = l_el.get("href", "") if l_el else ""
             else:
                 href = el.get("href", "") if el.name == "a" else ""
+
             if href and not href.startswith("http") and base_url:
                 href = base_url.rstrip("/") + "/" + href.lstrip("/")
             if not href:
                 href = url
+            if href in seen_urls:
+                continue
+            seen_urls.add(href)
+
             if title and matches_keywords(title, keywords, exclude):
                 jobs.append({"title": title, "url": href})
         return jobs
@@ -416,6 +508,7 @@ def fetch_jobs(entry: dict, keywords: list, exclude: list) -> list:
         "recruitee":       lambda: scrape_recruitee(entry["company_id"], keywords, exclude),
         "pinpoint":        lambda: scrape_pinpoint(entry["company_id"], keywords, exclude),
         "factorial":       lambda: scrape_factorial(entry["company_slug"], entry.get("tld", "factorialhr.com"), keywords, exclude),
+        "teamtailor":      lambda: scrape_teamtailor(entry["url"], keywords, exclude),
     }
     return dispatch.get(ats, lambda: scrape_generic(entry, keywords, exclude))()
 

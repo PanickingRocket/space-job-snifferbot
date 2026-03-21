@@ -54,7 +54,7 @@
       "head of",
       "vp ",
       "vice president",
-    
+
       "intern",
       "internship",
       "stage",
@@ -72,7 +72,7 @@
       "werkstudent",
       "praktikum",
       "praktikant",
-    
+
       "prácticas",
       "becario",
       "becaria",
@@ -80,7 +80,11 @@
       "ingeniero senior",
       "ingeniera senior",
       "jefe de",
-      "responsable de"
+      "responsable de",
+
+      "stagiaire",
+      "alternance",
+      "alternant"
     ]
   },
 
@@ -95,7 +99,7 @@
   {"name": "All.Space",             "ats": "workable", "company_id": "allspace"},
   {"name": "Altec",                 "ats": "generic",  "url": "https://www.altecspace.it/it/lavora-con-noi/","selector": "TODO"},
   {"name": "Antwerp Space",         "ats": "generic",  "url": "https://jobpage.cvwarehouse.com/?companyGuid=cb184417-1e4e-4b70-850f-be503d361263&lang=en-US","selector": "TODO"},
-  {"name": "Argotec",               "ats": "generic",  "url": "https://www.space-careers.com/jobs_at/argotec/11785", "selector": "h3 a", "base_url": "https://www.space-careers.com"},
+  {"name": "Argotec",               "ats": "generic",  "url": "https://www.argotecgroup.com/careers/",      "selector": "TODO"},
   {"name": "ASI",                   "ats": "generic",  "url": "https://www.asi.it/bandi-e-concorsi/",       "selector": "TODO"},
   {"name": "Astroscale",            "ats": "bamboohr", "company_id": "astroscale"},
   {"name": "Avio",                  "ats": "generic",  "url": "https://zinrec.intervieweb.it/avio/en/career","selector": "TODO"},
@@ -143,7 +147,7 @@
   {"name": "Iceye",                 "ats": "generic",  "url": "https://www.iceye.com/careers",               "selector": "TODO"},
   {"name": "IMS Space Consultancy", "ats": "generic",  "url": "https://www.ims-space.com/?page_id=298",      "selector": "TODO"},
   {"name": "Indra",                 "ats": "generic",  "url": "https://www.indraempleo.com/en/employment",   "selector": "TODO"},
-  {"name": "Infinite Orbits",       "ats": "generic",  "url": "https://www.infiniteorbits.io/jobs",          "selector": "TODO"},
+  {"name": "Infinite Orbits",       "ats": "generic",  "url": "https://www.infiniteorbits.io/jobs", "selector": "a[href*='/jobs/']", "title_from_heading": true, "base_url": "https://www.infiniteorbits.io"},
   {"name": "Involve Space",         "ats": "generic",  "url": "https://www.involvespace.eu/company/careers", "selector": "TODO"},
   {"name": "Isar Aerospace",        "ats": "generic",  "url": "https://www.isaraerospace.com/career",        "selector": "TODO"},
   {"name": "Isispace",              "ats": "generic",  "url": "https://careers.isispace.nl/",                "selector": "TODO"},
@@ -178,7 +182,7 @@
   {"name": "Omnidea",               "ats": "generic",  "url": "https://omnidea.net/careers/",               "selector": "TODO"},
   {"name": "Open Cosmos",           "ats": "generic",  "url": "https://careers.open-cosmos.com/jobs",        "selector": "TODO"},
   {"name": "Opus Aerospace", "ats": "factorial", "company_slug": "opus-aerospace", "tld": "factorial.fr"},
-  {"name": "Orbital Critical Systems","ats": "generic","url": "https://caf.teamtailor.com/jobs",             "selector": "TODO"},
+  {"name": "Orbital Critical Systems","ats": "teamtailor", "url": "https://caf.teamtailor.com/jobs"},
   {"name": "OroraTech",             "ats": "generic",  "url": "https://ororatech.com/company/careers",       "selector": "TODO"},
 
   {"name": "Pangea Propulsion", "ats": "factorial", "company_slug": "pangeapropulsion", "tld": "factorialhr.com"},  {"name": "Planetek",              "ats": "generic",  "url": "https://www.planetek.it/azienda/contatti/opportunita_di_lavoro","selector": "TODO"},
@@ -187,7 +191,7 @@
   {"name": "RedWire Space",         "ats": "generic",  "url": "https://careers.redwirespace.com/jobs/search","selector": "TODO"},
   {"name": "Reflex Aerospace",      "ats": "personio", "company_id": "reflex-aerospace-gmbh"},
   {"name": "ReOrbit",               "ats": "generic",  "url": "https://www.reorbit.space/careers",          "selector": "TODO"},
-  {"name": "Revolv Space",          "ats": "generic",  "url": "https://careers.revolvspace.com/",           "selector": "TODO"},
+  {"name": "Revolv Space",          "ats": "teamtailor", "url": "https://careers.revolvspace.com/jobs"},
   {"name": "Rina",                  "ats": "generic",  "url": "https://careers.rina.org/",                  "selector": "TODO"},
   {"name": "Rocket Lab",            "ats": "generic",  "url": "https://rocketlabcorp.com/careers/positions/","selector": "TODO"},
 
