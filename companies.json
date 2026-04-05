@@ -7,7 +7,6 @@
     "_info5": "Le global_exclude_keywords filtrano via i titoli che le contengono (case-insensitive).",
     "_info6": "Puoi aggiungere 'exclude_keywords' per-azienda: si sommano alle globali.",
     "_info7": "selector 'TODO' = azienda skippata. '_disabled': true = esclusa permanentemente.",
-
     "_global_keywords": [
       "GNC",
       "AOCS",
@@ -43,7 +42,6 @@
       "orbit determination",
       "maneuver"
     ],
-
     "_global_exclude_keywords": [
       "senior",
       "lead",
@@ -54,7 +52,6 @@
       "head of",
       "vp ",
       "vice president",
-
       "intern",
       "internship",
       "stage",
@@ -72,7 +69,6 @@
       "werkstudent",
       "praktikum",
       "praktikant",
-
       "prácticas",
       "becario",
       "becaria",
@@ -81,151 +77,721 @@
       "ingeniera senior",
       "jefe de",
       "responsable de",
-
       "stagiaire",
       "alternance",
       "alternant"
     ]
   },
-
-  {"name": "AAC Clyde Space",       "ats": "generic",  "url": "https://www.aac-clyde.space/careers",      "selector": "TODO"},
-  {"name": "Aerosoft",              "ats": "generic",  "url": "https://www.aerosoft.it/carriere/",          "selector": "TODO"},
-  {"name": "Aerospacelab",          "ats": "generic",  "url": "https://www.aerospacelab.com/jobs",          "selector": "TODO"},
-  {"name": "Aiko",                  "ats": "generic",  "url": "https://aikospace.com/",                     "selector": "TODO"},
-  {"name": "Airbus",                "ats": "workday",  "url": "https://ag.wd3.myworkdayjobs.com/en-US/Airbus"},
-  {"name": "Aistech Space",         "ats": "generic",  "url": "https://aistechspace.com/careers/",           "selector": "TODO"},
-  {"name": "Akkodis",               "ats": "generic",  "url": "https://www.akkodis.com/it",                 "selector": "TODO"},
-  {"name": "Alén Space",            "ats": "generic",  "url": "https://alen.space/careers/",                "selector": "TODO"},
-  {"name": "All.Space",             "ats": "workable", "company_id": "allspace"},
-  {"name": "Altec",                 "ats": "generic",  "url": "https://www.altecspace.it/it/lavora-con-noi/","selector": "TODO"},
-  {"name": "Antwerp Space",         "ats": "generic",  "url": "https://jobpage.cvwarehouse.com/?companyGuid=cb184417-1e4e-4b70-850f-be503d361263&lang=en-US","selector": "TODO"},
-  {"name": "Argotec",               "ats": "generic",  "url": "https://www.argotecgroup.com/careers/",      "selector": "TODO"},
-  {"name": "ASI",                   "ats": "generic",  "url": "https://www.asi.it/bandi-e-concorsi/",       "selector": "TODO"},
-  {"name": "Astroscale",            "ats": "bamboohr", "company_id": "astroscale"},
-  {"name": "Avio",                  "ats": "generic",  "url": "https://zinrec.intervieweb.it/avio/en/career","selector": "TODO"},
-
-  {"name": "Beyond Gravity",        "ats": "generic",  "url": "https://careers.beyondgravity.com/BeyondGravity/search/","selector": "TODO"},
-  {"name": "Boeing",                "ats": "generic",  "url": "https://jobs.boeing.com/category/engineering-flight-jobs/185/2624/1","selector": "TODO"},
-
-  {"name": "Capgemini",             "ats": "generic",  "url": "https://www.capgemini.com/careers/join-capgemini/job-search/","selector": "TODO"},
-  {"name": "CesiumAstro",           "ats": "lever",    "company_id": "CesiumAstro"},
-  {"name": "CLC Space",             "ats": "generic",  "url": "https://clc-space.de/",                      "selector": "TODO"},
-  {"name": "Collins Aerospace",     "ats": "generic",  "url": "https://careers.rtx.com/global/en/collins-aerospace-search-results-general","selector": "TODO"},
-  {"name": "Comat",                 "ats": "generic",  "url": "https://comat.space/en/about/join-us/",      "selector": "TODO"},
-  {"name": "Constellr",             "ats": "recruitee","company_id": "constellr"},
-  {"name": "CS Group",              "ats": "smartrecruiters","company_id": "SopraSteria1"},
-
-  {"name": "D-Orbit", "ats": "factorial", "company_slug": "dorbit-space", "tld": "factorial.it"},  {"name": "Darwin Recruitment",    "ats": "generic",  "url": "https://www.darwinrecruitment.com/",          "selector": "TODO"},
-  {"name": "DCUBED",                "ats": "personio", "company_id": "dcubed"},
-  {"name": "Deimos",                "ats": "generic",  "url": "https://elecnor-deimos.com/jobs/",            "selector": "TODO"},
-  {"name": "Demexios",              "ats": "generic",  "url": "https://demexios.com/jobs/",                  "selector": "TODO"},
-  {"name": "Destinus",              "ats": "generic",  "url": "https://www.destinus.com/careers",            "selector": "TODO"},
-  {"name": "DLR",                   "ats": "generic",  "url": "https://jobs.dlr.de/go/All-Jobs/9291501/",   "selector": "TODO"},
-
-  {"name": "Ecosmic",               "ats": "generic",  "url": "https://www.ecosmic.space/careers",           "selector": "TODO"},
-  {"name": "Endurosat",             "ats": "generic",  "url": "https://www.endurosat.com/careers/",          "selector": "TODO"},
-  {"name": "Enpulsion",             "ats": "generic",  "url": "https://www.enpulsion.com/careers/",          "selector": "TODO"},
-  {"name": "ESA",                   "ats": "generic",  "url": "https://www.esa.int/About_Us/Careers_at_ESA","selector": "TODO"},
-  {"name": "Eumetsat",              "ats": "generic",  "url": "https://www.eumetsat.int/work-us/vacancies",  "selector": "TODO"},
-  {"name": "Eutelsat",              "ats": "generic",  "url": "https://careers.eutelsat.com/search/",        "selector": "TODO"},
-  {"name": "Evona",                 "ats": "generic",  "url": "https://www.evona.com/spacejobs/",            "selector": "TODO"},
-  {"name": "eXaV",                  "ats": "generic",  "url": "https://www.exav.it/careers/",                "selector": "TODO"},
-  {"name": "Exolaunch",             "ats": "generic",  "url": "https://www.exolaunch.com/careers",           "selector": "TODO"},
-  {"name": "Exotrail",              "ats": "generic",  "url": "https://www.exotrail.com/careers",            "selector": "TODO"},
-
-  {"name": "Ferchau",               "ats": "generic",  "url": "https://touch.ferchau.com/de/en",             "selector": "TODO"},
-  {"name": "FOSSA Systems",         "ats": "generic",  "url": "https://fossa.systems/",                      "selector": "TODO"},
-
-  {"name": "GMV",                   "ats": "generic",  "url": "https://gmv.csod.com/ux/ats/careersite/4/home?c=gmv&lang=en-US","selector": "TODO"},
-  {"name": "GOM Space",             "ats": "generic",  "url": "https://gomspace.com/open-positions.aspx",    "selector": "TODO"},
-
-  {"name": "Hemeria",               "ats": "recruitee","company_id": "hemeriagroup"},
-  {"name": "HeSpace",               "ats": "generic",  "url": "https://www.hespace.com/vacancies?title=&country=All&category=38","selector": "TODO"},
-  {"name": "HyImpulse Technologies","ats": "generic",  "url": "https://www.hyimpulse.de/en/career",          "selector": "TODO"},
-  {"name": "HyPrSpace",             "ats": "generic",  "url": "https://hypr-space.com/career.html",          "selector": "TODO"},
-
-  {"name": "Iceye",                 "ats": "generic",  "url": "https://www.iceye.com/careers",               "selector": "TODO"},
-  {"name": "IMS Space Consultancy", "ats": "generic",  "url": "https://www.ims-space.com/?page_id=298",      "selector": "TODO"},
-  {"name": "Indra",                 "ats": "generic",  "url": "https://www.indraempleo.com/en/employment",   "selector": "TODO"},
-  {"name": "Infinite Orbits",       "ats": "generic",  "url": "https://www.infiniteorbits.io/jobs", "selector": "a[href*='/jobs/']", "title_from_heading": true, "base_url": "https://www.infiniteorbits.io"},
-  {"name": "Involve Space",         "ats": "generic",  "url": "https://www.involvespace.eu/company/careers", "selector": "TODO"},
-  {"name": "Isar Aerospace",        "ats": "generic",  "url": "https://www.isaraerospace.com/career",        "selector": "TODO"},
-  {"name": "Isispace",              "ats": "generic",  "url": "https://careers.isispace.nl/",                "selector": "TODO"},
-  {"name": "Ispace",                "ats": "lever",    "company_id": "ispace-inc"},
-
-  {"name": "Kayser Italia",         "ats": "generic",  "url": "http://www.kayser.it/index.php/job-opportunities/","selector": "TODO"},
-  {"name": "Kongsberg NanoAvionics","ats": "generic",  "url": "https://nanoavionics.com/our-careers/jobs/",  "selector": "TODO"},
-
-  {"name": "Latitude",              "ats": "generic",  "url": "https://www.latitude.eu/jobs/",               "selector": "TODO"},
-  {"name": "LeafSpace",             "ats": "generic",  "url": "https://leaf.space/contact/work-with-us/",    "selector": "TODO"},
-  {"name": "LeanSpace",             "ats": "generic",  "url": "https://leanspace.io/careers/",               "selector": "TODO"},
-  {"name": "Liftero",               "ats": "generic",  "url": "https://liftero.com/careers/",               "selector": "TODO"},
-  {"name": "LMO",                   "ats": "generic",  "url": "https://www.lmo.space/",                     "selector": "TODO"},
-  {"name": "Loft Orbital",          "ats": "lever",    "company_id": "loftorbital"},
-  {"name": "Look Up Space",         "ats": "generic",  "url": "https://www.lookupspace.com/careers",         "selector": "TODO"},
-  {"name": "LSE Space / SSC",       "ats": "generic",  "url": "https://sscspace.com/career/job-opportunities/","selector": "TODO"},
-  {"name": "Lunar Outpost",         "ats": "generic",  "url": "https://www.lunaroutpost.com/careers",        "selector": "TODO"},
-  {"name": "Lúnasa",                "ats": "generic",  "url": "https://lunasaspace.com/careers/",            "selector": "TODO"},
-  {"name": "LuxSpace",              "ats": "generic",  "url": "https://luxspace.lu/career/",                 "selector": "TODO"},
-
-  {"name": "Morpheus Space",        "ats": "generic",  "url": "https://careers.morpheus.space/",             "selector": "TODO"},
-
-  {"name": "Nebula Space",          "ats": "generic",  "url": "https://www.nebula-space.com/cm/jobs",        "selector": "TODO"},
-  {"name": "Neuraspace",            "ats": "generic",  "url": "https://www.neuraspace.com/careers",          "selector": "TODO"},
-  {"name": "NewOrbit",              "ats": "pinpoint", "company_id": "neworbit"},
-  {"name": "NurjanaTech",           "ats": "generic",  "url": "https://www.nurjanatech.com/contact/",         "selector": "TODO"},
-
-  {"name": "Odysseus Space",        "ats": "generic",  "url": "https://www.odysseus.space/careers",          "selector": "TODO"},
-  {"name": "OHB DE",                "ats": "generic",  "url": "https://career-ohb.csod.com/ux/ats/careersite/4/home?c=career-ohb","selector": "TODO"},
-  {"name": "OHB Italia",            "ats": "generic",  "url": "https://www.ohb-italia.it/careers/",          "selector": "TODO"},
-  {"name": "Okapi Orbits",          "ats": "generic",  "url": "https://www.okapiorbits.space/career",        "selector": "TODO"},
-  {"name": "Omnidea",               "ats": "generic",  "url": "https://omnidea.net/careers/",               "selector": "TODO"},
-  {"name": "Open Cosmos",           "ats": "generic",  "url": "https://careers.open-cosmos.com/jobs",        "selector": "TODO"},
-  {"name": "Opus Aerospace",        "ats": "factorial", "company_slug": "opus-aerospace", "tld": "factorial.fr"},
-  {"name": "Orbital Critical Systems","ats": "teamtailor", "url": "https://caf.teamtailor.com/jobs"},
-  {"name": "OroraTech",             "ats": "generic",  "url": "https://ororatech.com/company/careers",       "selector": "TODO"},
-
-  {"name": "Pangea Propulsion", "ats": "factorial", "company_slug": "pangeapropulsion", "tld": "factorialhr.com"},  {"name": "Planetek",              "ats": "generic",  "url": "https://www.planetek.it/azienda/contatti/opportunita_di_lavoro","selector": "TODO"},
-  {"name": "PLD Space",             "ats": "generic",  "url": "https://www.pldspace.com/en/pld-space-open-positions/","selector": "TODO"},
-
-  {"name": "RedWire Space",         "ats": "generic",  "url": "https://careers.redwirespace.com/jobs/search","selector": "TODO"},
-  {"name": "Reflex Aerospace",      "ats": "personio", "company_id": "reflex-aerospace-gmbh"},
-  {"name": "ReOrbit",               "ats": "generic",  "url": "https://www.reorbit.space/careers",          "selector": "TODO"},
-  {"name": "Revolv Space",          "ats": "teamtailor", "url": "https://careers.revolvspace.com/jobs"},
-  {"name": "Rina",                  "ats": "generic",  "url": "https://careers.rina.org/",                  "selector": "TODO"},
-  {"name": "Rocket Lab",            "ats": "generic",  "url": "https://rocketlabcorp.com/careers/positions/","selector": "TODO"},
-
-  {"name": "Safran",                "ats": "generic",  "url": "https://www.safran-group.com/jobs",          "selector": "TODO"},
-  {"name": "Sateliot",              "ats": "teamtailor", "url": "https://careers.sateliot.com/jobs"},
-  {"name": "Satellite Vu",          "ats": "workable", "company_id": "satellitevu"},
-  {"name": "Satlantis",             "ats": "generic",  "url": "https://www.satlantis.com/job-offers/",      "selector": "TODO"},
-  {"name": "Sener",                 "ats": "generic",  "url": "https://www.engineering-jobs.sener/en/jobs", "selector": "TODO"},
-  {"name": "SES Satellites",        "ats": "generic",  "url": "https://careers.ses.com/search/",            "selector": "TODO"},
-  {"name": "Skynopy",               "_disabled": true, "_note": "Notion page — non scrappabile"},
-  {"name": "Skyrora",               "ats": "generic",  "url": "https://skyrora.com/career/",               "selector": "TODO"},
-  {"name": "Sodern (ArianeGroup)",  "ats": "generic",  "url": "https://sodern.my.salesforce-sites.com/Recrutement","selector": "TODO"},
-  {"name": "Space Inventor",        "ats": "generic",  "url": "https://space-inventor.com/career",          "selector": "TODO"},
-  {"name": "SpaceDreamS",           "ats": "generic",  "url": "https://www.spacedreams.com/jobs",           "selector": "TODO"},
-  {"name": "Spaceopal",             "ats": "personio", "company_id": "spaceopal"},
-  {"name": "SpaceTech",             "ats": "generic",  "url": "https://spacetech-i.com/career/open-positions","selector": "TODO"},
-  {"name": "SPIN",                  "ats": "generic",  "url": "https://www.spinintech.com/careers",         "selector": "TODO"},
-  {"name": "Spire Global",          "ats": "generic",  "url": "https://spire.com/careers/job-openings/",    "selector": "TODO"},
-  {"name": "SSC Space",             "ats": "generic",  "url": "https://sscspace.com/career/job-opportunities/","selector": "TODO"},
-  {"name": "SSTL",                  "ats": "generic",  "url": "https://jobs.sstl.co.uk/jobs",               "selector": "TODO"},
-  {"name": "SWISSto12",             "ats": "generic",  "url": "https://swissto12-b67d359b42.careers.hibob.com/jobs","selector": "TODO"},
-  {"name": "Synergie Italia",       "ats": "generic",  "url": "https://synergie.intervieweb.it/",           "selector": "TODO"},
-
-  {"name": "Telesat",               "ats": "generic",  "url": "https://www.telesat.com/careers/jobs/",      "selector": "TODO"},
-  {"name": "Telespazio",            "ats": "workday",  "url": "https://leonardocompany.wd3.myworkdayjobs.com/LeonardoCareerSite"},
-  {"name": "Terma",                 "ats": "generic",  "url": "https://career5.successfactors.eu/portalcareer?company=termaas","selector": "TODO"},
-  {"name": "Thales Alenia Space",   "ats": "workday",  "url": "https://thales.wd3.myworkdayjobs.com/en-US/Careers"},
-  {"name": "The Exploration Company","ats": "pinpoint","company_id": "exploration"},
-  {"name": "ThrustMe",              "ats": "generic",  "url": "https://www.thrustme.fr/your-career",        "selector": "TODO"},
-  {"name": "Tyvak International",   "ats": "workable", "company_id": "tyvakint"},
-
-  {"name": "U-space",               "ats": "generic",  "url": "https://www.u-space.fr/our-job-offers/",     "selector": "TODO"},
-
-  {"name": "Vyoma",                 "ats": "personio", "company_id": "vyoma-gmbh"},
-
-  {"name": "ClearSpace",            "ats": "generic",  "url": "https://clearspace.odoo.com/jobs?all_countries=1","selector": "TODO"}
+  {
+    "name": "AAC Clyde Space",
+    "ats": "generic",
+    "url": "https://www.aac-clyde.space/careers",
+    "selector": "TODO"
+  },
+  {
+    "name": "Aerosoft",
+    "ats": "generic",
+    "url": "https://www.aerosoft.it/carriere/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Aerospacelab",
+    "ats": "generic",
+    "url": "https://www.aerospacelab.com/jobs",
+    "selector": "TODO"
+  },
+  {
+    "name": "Aiko",
+    "ats": "generic",
+    "url": "https://aikospace.com/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Airbus",
+    "ats": "workday",
+    "url": "https://ag.wd3.myworkdayjobs.com/en-US/Airbus"
+  },
+  {
+    "name": "Aistech Space",
+    "ats": "generic",
+    "url": "https://aistechspace.com/careers/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Akkodis",
+    "ats": "generic",
+    "url": "https://www.akkodis.com/it",
+    "selector": "TODO"
+  },
+  {
+    "name": "Alén Space",
+    "ats": "generic",
+    "url": "https://alen.space/careers/",
+    "selector": "TODO"
+  },
+  {
+    "name": "All.Space",
+    "ats": "workable",
+    "company_id": "allspace"
+  },
+  {
+    "name": "Altec",
+    "ats": "generic",
+    "url": "https://www.altecspace.it/it/lavora-con-noi/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Antwerp Space",
+    "ats": "generic",
+    "url": "https://jobpage.cvwarehouse.com/?companyGuid=cb184417-1e4e-4b70-850f-be503d361263&lang=en-US",
+    "selector": "TODO"
+  },
+  {
+    "name": "Argotec",
+    "ats": "generic",
+    "url": "https://www.space-careers.com/jobs_at/argotec/11785",
+    "selector": "h3 a",
+    "base_url": "https://www.space-careers.com"
+  },
+  {
+    "name": "ASI",
+    "ats": "generic",
+    "url": "https://www.asi.it/bandi-e-concorsi/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Astroscale",
+    "ats": "bamboohr",
+    "company_id": "astroscale"
+  },
+  {
+    "name": "Avio",
+    "ats": "generic",
+    "url": "https://zinrec.intervieweb.it/avio/en/career",
+    "selector": "TODO"
+  },
+  {
+    "name": "Beyond Gravity",
+    "ats": "generic",
+    "url": "https://careers.beyondgravity.com/BeyondGravity/search/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Boeing",
+    "ats": "generic",
+    "url": "https://jobs.boeing.com/category/engineering-flight-jobs/185/2624/1",
+    "selector": "TODO"
+  },
+  {
+    "name": "Capgemini",
+    "ats": "generic",
+    "url": "https://www.capgemini.com/careers/join-capgemini/job-search/",
+    "selector": "TODO"
+  },
+  {
+    "name": "CesiumAstro",
+    "ats": "lever",
+    "company_id": "CesiumAstro"
+  },
+  {
+    "name": "CLC Space",
+    "ats": "generic",
+    "url": "https://clc-space.de/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Collins Aerospace",
+    "ats": "generic",
+    "url": "https://careers.rtx.com/global/en/collins-aerospace-search-results-general",
+    "selector": "TODO"
+  },
+  {
+    "name": "Comat",
+    "ats": "generic",
+    "url": "https://comat.space/en/about/join-us/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Constellr",
+    "ats": "recruitee",
+    "company_id": "constellr"
+  },
+  {
+    "name": "CS Group",
+    "ats": "smartrecruiters",
+    "company_id": "SopraSteria1"
+  },
+  {
+    "name": "D-Orbit",
+    "ats": "factorial",
+    "company_slug": "dorbit-space",
+    "tld": "factorial.it"
+  },
+  {
+    "name": "Darwin Recruitment",
+    "ats": "generic",
+    "url": "https://www.darwinrecruitment.com/",
+    "selector": "TODO"
+  },
+  {
+    "name": "DCUBED",
+    "ats": "personio",
+    "company_id": "dcubed"
+  },
+  {
+    "name": "Deimos",
+    "ats": "generic",
+    "url": "https://elecnor-deimos.com/jobs/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Demexios",
+    "ats": "generic",
+    "url": "https://demexios.com/jobs/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Destinus",
+    "ats": "generic",
+    "url": "https://www.destinus.com/careers",
+    "selector": "TODO"
+  },
+  {
+    "name": "DLR",
+    "ats": "generic",
+    "url": "https://jobs.dlr.de/go/All-Jobs/9291501/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Ecosmic",
+    "ats": "generic",
+    "url": "https://www.ecosmic.space/careers",
+    "selector": "TODO"
+  },
+  {
+    "name": "Endurosat",
+    "ats": "generic",
+    "url": "https://www.endurosat.com/careers/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Enpulsion",
+    "ats": "generic",
+    "url": "https://www.enpulsion.com/careers/",
+    "selector": "TODO"
+  },
+  {
+    "name": "ESA",
+    "ats": "generic",
+    "url": "https://www.esa.int/About_Us/Careers_at_ESA",
+    "selector": "TODO"
+  },
+  {
+    "name": "Eumetsat",
+    "ats": "generic",
+    "url": "https://www.eumetsat.int/work-us/vacancies",
+    "selector": "TODO"
+  },
+  {
+    "name": "Eutelsat",
+    "ats": "generic",
+    "url": "https://careers.eutelsat.com/search/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Evona",
+    "ats": "generic",
+    "url": "https://www.evona.com/spacejobs/",
+    "selector": "TODO"
+  },
+  {
+    "name": "eXaV",
+    "ats": "generic",
+    "url": "https://www.exav.it/careers/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Exolaunch",
+    "ats": "generic",
+    "url": "https://www.exolaunch.com/careers",
+    "selector": "TODO"
+  },
+  {
+    "name": "Exotrail",
+    "ats": "generic",
+    "url": "https://www.exotrail.com/careers",
+    "selector": "TODO"
+  },
+  {
+    "name": "Ferchau",
+    "ats": "generic",
+    "url": "https://touch.ferchau.com/de/en",
+    "selector": "TODO"
+  },
+  {
+    "name": "FOSSA Systems",
+    "ats": "generic",
+    "url": "https://fossa.systems/",
+    "selector": "TODO"
+  },
+  {
+    "name": "GMV",
+    "ats": "generic",
+    "url": "https://gmv.csod.com/ux/ats/careersite/4/home?c=gmv&lang=en-US",
+    "selector": "TODO"
+  },
+  {
+    "name": "GOM Space",
+    "ats": "generic",
+    "url": "https://gomspace.com/open-positions.aspx",
+    "selector": "TODO"
+  },
+  {
+    "name": "Hemeria",
+    "ats": "recruitee",
+    "company_id": "hemeriagroup"
+  },
+  {
+    "name": "HeSpace",
+    "ats": "generic",
+    "url": "https://www.hespace.com/vacancies?title=&country=All&category=38",
+    "selector": "TODO"
+  },
+  {
+    "name": "HyImpulse Technologies",
+    "ats": "generic",
+    "url": "https://www.hyimpulse.de/en/career",
+    "selector": "TODO"
+  },
+  {
+    "name": "HyPrSpace",
+    "ats": "generic",
+    "url": "https://hypr-space.com/career.html",
+    "selector": "TODO"
+  },
+  {
+    "name": "Iceye",
+    "ats": "generic",
+    "url": "https://www.iceye.com/careers",
+    "selector": "TODO"
+  },
+  {
+    "name": "IMS Space Consultancy",
+    "ats": "generic",
+    "url": "https://www.ims-space.com/?page_id=298",
+    "selector": "TODO"
+  },
+  {
+    "name": "Indra",
+    "ats": "generic",
+    "url": "https://www.indraempleo.com/en/employment",
+    "selector": "TODO"
+  },
+  {
+    "name": "Infinite Orbits",
+    "ats": "generic",
+    "url": "https://www.infiniteorbits.io/jobs",
+    "selector": "a[href*='/jobs/']",
+    "title_from_heading": true,
+    "base_url": "https://www.infiniteorbits.io"
+  },
+  {
+    "name": "Involve Space",
+    "ats": "generic",
+    "url": "https://www.involvespace.eu/company/careers",
+    "selector": "TODO"
+  },
+  {
+    "name": "Isar Aerospace",
+    "ats": "generic",
+    "url": "https://www.isaraerospace.com/career",
+    "selector": "TODO"
+  },
+  {
+    "name": "Isispace",
+    "ats": "generic",
+    "url": "https://careers.isispace.nl/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Ispace",
+    "ats": "lever",
+    "company_id": "ispace-inc"
+  },
+  {
+    "name": "Kayser Italia",
+    "ats": "generic",
+    "url": "http://www.kayser.it/index.php/job-opportunities/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Kongsberg NanoAvionics",
+    "ats": "generic",
+    "url": "https://nanoavionics.com/our-careers/jobs/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Latitude",
+    "ats": "generic",
+    "url": "https://www.latitude.eu/jobs/",
+    "selector": "TODO"
+  },
+  {
+    "name": "LeafSpace",
+    "ats": "generic",
+    "url": "https://leaf.space/contact/work-with-us/",
+    "selector": "TODO"
+  },
+  {
+    "name": "LeanSpace",
+    "ats": "generic",
+    "url": "https://leanspace.io/careers/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Liftero",
+    "ats": "generic",
+    "url": "https://liftero.com/careers/",
+    "selector": "TODO"
+  },
+  {
+    "name": "LMO",
+    "ats": "generic",
+    "url": "https://www.lmo.space/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Loft Orbital",
+    "ats": "lever",
+    "company_id": "loftorbital"
+  },
+  {
+    "name": "Look Up Space",
+    "ats": "generic",
+    "url": "https://www.lookupspace.com/careers",
+    "selector": "TODO"
+  },
+  {
+    "name": "LSE Space / SSC",
+    "ats": "generic",
+    "url": "https://sscspace.com/career/job-opportunities/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Lunar Outpost",
+    "ats": "generic",
+    "url": "https://www.lunaroutpost.com/careers",
+    "selector": "TODO"
+  },
+  {
+    "name": "Lúnasa",
+    "ats": "generic",
+    "url": "https://lunasaspace.com/careers/",
+    "selector": "TODO"
+  },
+  {
+    "name": "LuxSpace",
+    "ats": "generic",
+    "url": "https://luxspace.lu/career/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Morpheus Space",
+    "ats": "generic",
+    "url": "https://careers.morpheus.space/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Nebula Space",
+    "ats": "generic",
+    "url": "https://www.nebula-space.com/cm/jobs",
+    "selector": "TODO"
+  },
+  {
+    "name": "Neuraspace",
+    "ats": "generic",
+    "url": "https://www.neuraspace.com/careers",
+    "selector": "TODO"
+  },
+  {
+    "name": "NewOrbit",
+    "ats": "pinpoint",
+    "company_id": "neworbit"
+  },
+  {
+    "name": "NurjanaTech",
+    "ats": "generic",
+    "url": "https://www.nurjanatech.com/contact/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Odysseus Space",
+    "ats": "generic",
+    "url": "https://www.odysseus.space/careers",
+    "selector": "TODO"
+  },
+  {
+    "name": "OHB DE",
+    "ats": "generic",
+    "url": "https://career-ohb.csod.com/ux/ats/careersite/4/home?c=career-ohb",
+    "selector": "TODO"
+  },
+  {
+    "name": "OHB Italia",
+    "ats": "generic",
+    "url": "https://www.ohb-italia.it/careers/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Okapi Orbits",
+    "ats": "generic",
+    "url": "https://www.okapiorbits.space/career",
+    "selector": "TODO"
+  },
+  {
+    "name": "Omnidea",
+    "ats": "generic",
+    "url": "https://omnidea.net/careers/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Open Cosmos",
+    "ats": "generic",
+    "url": "https://careers.open-cosmos.com/jobs",
+    "selector": "TODO"
+  },
+  {
+    "name": "Opus Aerospace",
+    "ats": "factorial",
+    "company_slug": "opus-aerospace",
+    "tld": "factorial.fr"
+  },
+  {
+    "name": "Orbital Critical Systems",
+    "ats": "teamtailor",
+    "url": "https://caf.teamtailor.com/jobs"
+  },
+  {
+    "name": "OroraTech",
+    "ats": "generic",
+    "url": "https://ororatech.com/company/careers",
+    "selector": "TODO"
+  },
+  {
+    "name": "Pangea Propulsion",
+    "ats": "factorial",
+    "company_slug": "pangeapropulsion",
+    "tld": "factorialhr.com"
+  },
+  {
+    "name": "Planetek",
+    "ats": "generic",
+    "url": "https://www.planetek.it/azienda/contatti/opportunita_di_lavoro",
+    "selector": "TODO"
+  },
+  {
+    "name": "PLD Space",
+    "ats": "generic",
+    "url": "https://www.pldspace.com/en/pld-space-open-positions/",
+    "selector": "TODO"
+  },
+  {
+    "name": "RedWire Space",
+    "ats": "generic",
+    "url": "https://careers.redwirespace.com/jobs/search",
+    "selector": "TODO"
+  },
+  {
+    "name": "Reflex Aerospace",
+    "ats": "personio",
+    "company_id": "reflex-aerospace-gmbh"
+  },
+  {
+    "name": "ReOrbit",
+    "ats": "generic",
+    "url": "https://www.reorbit.space/careers",
+    "selector": "TODO"
+  },
+  {
+    "name": "Revolv Space",
+    "ats": "teamtailor",
+    "url": "https://careers.revolvspace.com/jobs"
+  },
+  {
+    "name": "Rina",
+    "ats": "generic",
+    "url": "https://careers.rina.org/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Rocket Lab",
+    "ats": "generic",
+    "url": "https://rocketlabcorp.com/careers/positions/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Safran",
+    "ats": "generic",
+    "url": "https://www.safran-group.com/jobs",
+    "selector": "TODO"
+  },
+  {
+    "name": "Sateliot",
+    "ats": "teamtailor",
+    "url": "https://careers.sateliot.com/jobs"
+  },
+  {
+    "name": "Satellite Vu",
+    "ats": "workable",
+    "company_id": "satellitevu"
+  },
+  {
+    "name": "Satlantis",
+    "ats": "generic",
+    "url": "https://www.satlantis.com/job-offers/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Sener",
+    "ats": "generic",
+    "url": "https://www.engineering-jobs.sener/en/jobs",
+    "selector": "TODO"
+  },
+  {
+    "name": "SES Satellites",
+    "ats": "generic",
+    "url": "https://careers.ses.com/search/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Skynopy",
+    "_disabled": true,
+    "_note": "Notion page — non scrappabile"
+  },
+  {
+    "name": "Skyrora",
+    "ats": "generic",
+    "url": "https://skyrora.com/career/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Sodern (ArianeGroup)",
+    "ats": "generic",
+    "url": "https://sodern.my.salesforce-sites.com/Recrutement",
+    "selector": "TODO"
+  },
+  {
+    "name": "Space Inventor",
+    "ats": "generic",
+    "url": "https://space-inventor.com/career",
+    "selector": "TODO"
+  },
+  {
+    "name": "SpaceDreamS",
+    "ats": "generic",
+    "url": "https://www.spacedreams.com/jobs",
+    "selector": "TODO"
+  },
+  {
+    "name": "Spaceopal",
+    "ats": "personio",
+    "company_id": "spaceopal"
+  },
+  {
+    "name": "SpaceTech",
+    "ats": "generic",
+    "url": "https://spacetech-i.com/career/open-positions",
+    "selector": "TODO"
+  },
+  {
+    "name": "SPIN",
+    "ats": "generic",
+    "url": "https://www.spinintech.com/careers",
+    "selector": "TODO"
+  },
+  {
+    "name": "Spire Global",
+    "ats": "generic",
+    "url": "https://spire.com/careers/job-openings/",
+    "selector": "TODO"
+  },
+  {
+    "name": "SSC Space",
+    "ats": "generic",
+    "url": "https://sscspace.com/career/job-opportunities/",
+    "selector": "TODO"
+  },
+  {
+    "name": "SSTL",
+    "ats": "generic",
+    "url": "https://jobs.sstl.co.uk/jobs",
+    "selector": "TODO"
+  },
+  {
+    "name": "SWISSto12",
+    "ats": "generic",
+    "url": "https://swissto12-b67d359b42.careers.hibob.com/jobs",
+    "selector": "TODO"
+  },
+  {
+    "name": "Synergie Italia",
+    "ats": "generic",
+    "url": "https://synergie.intervieweb.it/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Telesat",
+    "ats": "generic",
+    "url": "https://www.telesat.com/careers/jobs/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Telespazio",
+    "ats": "workday",
+    "url": "https://leonardocompany.wd3.myworkdayjobs.com/LeonardoCareerSite"
+  },
+  {
+    "name": "Terma",
+    "ats": "generic",
+    "url": "https://career5.successfactors.eu/portalcareer?company=termaas",
+    "selector": "TODO"
+  },
+  {
+    "name": "Thales Alenia Space",
+    "ats": "workday",
+    "url": "https://thales.wd3.myworkdayjobs.com/en-US/Careers"
+  },
+  {
+    "name": "The Exploration Company",
+    "ats": "pinpoint",
+    "company_id": "exploration"
+  },
+  {
+    "name": "ThrustMe",
+    "ats": "generic",
+    "url": "https://www.thrustme.fr/your-career",
+    "selector": "TODO"
+  },
+  {
+    "name": "Tyvak International",
+    "ats": "workable",
+    "company_id": "tyvakint"
+  },
+  {
+    "name": "U-space",
+    "ats": "generic",
+    "url": "https://www.u-space.fr/our-job-offers/",
+    "selector": "TODO"
+  },
+  {
+    "name": "Vyoma",
+    "ats": "personio",
+    "company_id": "vyoma-gmbh"
+  },
+  {
+    "name": "ClearSpace",
+    "ats": "generic",
+    "url": "https://clearspace.odoo.com/jobs?all_countries=1",
+    "selector": "TODO"
+  }
 ]

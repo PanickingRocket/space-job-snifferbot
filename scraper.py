@@ -3,7 +3,8 @@ Space Job Tracker
 Monitora le career page di aziende space e notifica su Telegram le nuove posizioni.
 
 ATS supportati: greenhouse, lever, smartrecruiters, workday,
-                workable, personio, bamboohr, recruitee, pinpoint, generic
+                workable, personio, bamboohr, recruitee, pinpoint,
+                factorial, teamtailor, generic
 """
 
 import json
@@ -12,7 +13,7 @@ import sys
 import hashlib
 import requests
 from datetime import datetime
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 from bs4 import BeautifulSoup
 
 # ─── Config ───────────────────────────────────────────────────────────────────
@@ -116,10 +117,8 @@ def matches_keywords(title: str, keywords: list, exclude: list = []) -> bool:
     exclude vuota = nessun filtro esclusivo.
     """
     t = title.lower()
-    # Prima controlla le esclusioni — se matcha una, scarta subito
     if any(ex.lower() in t for ex in exclude):
         return False
-    # Poi applica il filtro inclusivo
     if not keywords:
         return True
     return any(kw.lower() in t for kw in keywords)
@@ -138,13 +137,11 @@ def get_effective_keywords(entry: dict, global_keywords: list, global_exclude: l
     if entry.get("override_global_keywords"):
         return company_kws, company_excl
 
-    # Unione keywords senza duplicati
     merged_kws = list(global_keywords)
     for kw in company_kws:
         if kw not in merged_kws:
             merged_kws.append(kw)
 
-    # Unione exclude senza duplicati
     merged_excl = list(global_exclude)
     for ex in company_excl:
         if ex not in merged_excl:
@@ -338,14 +335,10 @@ def scrape_factorial(company_slug: str, tld: str, keywords: list, exclude: list)
             href = a["href"]
             if not href.startswith("http"):
                 href = base + href
-
-            # Evita duplicati (stesso URL)
             if href in seen_urls:
                 continue
             seen_urls.add(href)
 
-            # Risali al genitore (li o div) e prendi il primo testo significativo
-            # che non sia "Apply now" o testo di metadati brevi (es. "Hybrid")
             parent = a.parent
             title = ""
             for candidate in parent.find_all(string=True, recursive=True):
@@ -358,46 +351,14 @@ def scrape_factorial(company_slug: str, tld: str, keywords: list, exclude: list)
 
             if title and matches_keywords(title, keywords, exclude):
                 jobs.append({"title": title, "url": href})
-
         return jobs
     except Exception as e:
         print(f"    [ERROR] Factorial ({company_slug}.{tld}): {e}")
         return []
 
 
-def scrape_teamtailor(base_url: str, keywords: list, exclude: list) -> list:
-    """Teamtailor ATS — usato da Revolv Space, Orbital Critical Systems, ecc.
-
-    Struttura HTML Teamtailor (/jobs page):
-      <a href="/jobs/1234567-job-title">Job Title</a>
-      Il titolo è il testo del link stesso, l'ID numerico è sempre presente nell'href.
-    """
-    import re
-    jobs_url = base_url.rstrip("/") + "/jobs"
-    try:
-        r = requests.get(jobs_url, timeout=20, headers=HEADERS)
-        soup = BeautifulSoup(r.text, "html.parser")
-        jobs = []
-        seen_urls = set()
-        # Teamtailor: href sempre della forma /jobs/[digits]-[slug]
-        for a in soup.find_all("a", href=re.compile(r"/jobs/\d+")):
-            title = a.get_text(strip=True)
-            href  = a["href"]
-            if not href.startswith("http"):
-                href = base_url.rstrip("/") + href
-            if href in seen_urls or not title:
-                continue
-            seen_urls.add(href)
-            if matches_keywords(title, keywords, exclude):
-                jobs.append({"title": title, "url": href})
-        return jobs
-    except Exception as e:
-        print(f"    [ERROR] Teamtailor ({base_url}): {e}")
-        return []
-
-
 def scrape_teamtailor(url: str, keywords: list, exclude: list) -> list:
-    """Teamtailor — usato da Revolv Space, Orbital Critical Systems, ecc.
+    """Teamtailor — usato da Revolv Space, Orbital Critical Systems, Sateliot, ecc.
     I job link hanno il titolo direttamente come testo del tag <a>.
     """
     try:
@@ -413,7 +374,6 @@ def scrape_teamtailor(url: str, keywords: list, exclude: list) -> list:
             href = a["href"]
             if not href.startswith("http"):
                 href = base + href
-            # Salta link generici senza titolo reale
             if not title or title.lower() in ("apply", "view job", "apply now", ""):
                 continue
             if href in seen_urls:
@@ -431,15 +391,13 @@ def scrape_generic(entry: dict, keywords: list, exclude: list) -> list:
     """Scraper generico via CSS selector.
 
     Campi supportati in companies.json:
-      url           — pagina da visitare
-      selector      — CSS selector per ogni job listing (elemento "card")
-      title_selector — (opzionale) CSS selector del titolo DENTRO l'elemento
-      link_selector  — (opzionale) CSS selector del link DENTRO l'elemento
-      sibling_link_selector — (opzionale) CSS selector del link come FRATELLO
-                               dell'elemento selezionato (utile per Wix e simili
-                               dove titolo e link sono elementi separati allo stesso
-                               livello, es. <h2>Titolo</h2> ... <a>View Job</a>)
-      base_url      — (opzionale) prefisso per link relativi
+      url               — pagina da visitare
+      selector          — CSS selector per ogni job (usa "TODO" per skippare)
+      title_selector    — (opzionale) CSS selector del titolo dentro l'elemento
+      link_selector     — (opzionale) CSS selector del link dentro l'elemento
+      title_from_heading — (opzionale) se true, il titolo è nel heading h1/h2/h3
+                           precedente il link (utile per siti Wix)
+      base_url          — (opzionale) prefisso per link relativi
     """
     url                = entry["url"]
     selector           = entry.get("selector", "")
@@ -461,7 +419,6 @@ def scrape_generic(entry: dict, keywords: list, exclude: list) -> list:
         for el in soup.select(selector):
             # ── Titolo ──────────────────────────────────────────────────────
             if title_from_heading:
-                # Titolo in heading (h1/h2/h3) precedente al link (es. Wix)
                 heading = el.find_previous(["h1", "h2", "h3"])
                 title = heading.get_text(strip=True) if heading else ""
             elif title_sel:
@@ -508,7 +465,7 @@ def fetch_jobs(entry: dict, keywords: list, exclude: list) -> list:
         "recruitee":       lambda: scrape_recruitee(entry["company_id"], keywords, exclude),
         "pinpoint":        lambda: scrape_pinpoint(entry["company_id"], keywords, exclude),
         "factorial":       lambda: scrape_factorial(entry["company_slug"], entry.get("tld", "factorialhr.com"), keywords, exclude),
-        "teamtailor":      lambda: scrape_teamtailor(entry["url"], keywords, exclude),
+        "teamtailor":      lambda: scrape_teamtailor(entry["url"], keywords, exclude),  # FIX: era entry["base_url"]
     }
     return dispatch.get(ats, lambda: scrape_generic(entry, keywords, exclude))()
 
@@ -526,12 +483,8 @@ def fetch_jobs(entry: dict, keywords: list, exclude: list) -> list:
 #      → se un job viene rimosso e ripostato in futuro, verrà notificato di nuovo ✓
 #   5. Aggiorna last_seen per i job ancora online
 
-def update_seen_and_find_new(
-    company_seen: dict, current_jobs: list
-) -> tuple[dict, list]:
-    """
-    Ritorna (company_seen aggiornato, lista di job nuovi).
-    """
+def update_seen_and_find_new(company_seen: dict, current_jobs: list) -> tuple[dict, list]:
+    """Ritorna (company_seen aggiornato, lista di job nuovi)."""
     current_ids = {}
     for job in current_jobs:
         jid = make_job_id(job["title"], job["url"])
@@ -540,7 +493,6 @@ def update_seen_and_find_new(
     new_jobs = []
     now = datetime.now().isoformat()
 
-    # Trova i nuovi
     for jid, job in current_ids.items():
         if jid not in company_seen:
             new_jobs.append(job)
@@ -551,11 +503,9 @@ def update_seen_and_find_new(
                 "last_seen":  now,
             }
         else:
-            # Aggiorna last_seen per i job già noti ancora online
             company_seen[jid]["last_seen"] = now
 
-    # Rimuovi i job che non sono più online
-    # (così se ricompaiono in futuro verranno notificati come nuovi)
+    # Rimuovi i job non più online (così se ricompaiono verranno notificati)
     stale_ids = [jid for jid in company_seen if jid not in current_ids]
     for jid in stale_ids:
         removed = company_seen.pop(jid)
@@ -578,7 +528,7 @@ def main():
     print(f"Exclude globali attive:  {len(global_exclude)}\n")
 
     for entry in companies:
-        name             = entry.get("name", "?")
+        name              = entry.get("name", "?")
         keywords, exclude = get_effective_keywords(entry, global_keywords, global_exclude)
         print(f"  → {name}")
 
