@@ -11,23 +11,17 @@
   "Altec": {},
   "Antwerp Space": {},
   "Argotec": {
-    "b6214dfa079f6eb25a3d6808cf1d5639": {
-      "title": "Validation and Verification Systems Engineer",
-      "url": "https://www.space-careers.com/job_display/288265/Validation_and_Verification_Systems_Engineer_Argotec_San_Mauro_Torinese_Italy",
-      "first_seen": "2026-04-06T08:09:39.072402",
-      "last_seen": "2026-04-23T08:19:01.781238"
-    },
     "0050b7396291730cfa44968c07287e8c": {
       "title": "Propulsion Systems Engineer",
       "url": "https://www.space-careers.com/job_display/289660/Propulsion_Systems_Engineer_Argotec_San_Mauro_Torinese_Italy",
       "first_seen": "2026-04-14T08:10:46.707725",
-      "last_seen": "2026-04-23T08:19:01.781238"
+      "last_seen": "2026-04-24T08:30:42.799935"
     },
     "86ed46ef5fe7392d73667d7f3d2c9b44": {
       "title": "Payload Systems Engineer (SAR or Optical)",
       "url": "https://www.space-careers.com/job_display/289871/Payload_Systems_Engineer_SAR_or_Optical_Argotec_San_Mauro_Torinese_Italy",
       "first_seen": "2026-04-17T08:12:02.969614",
-      "last_seen": "2026-04-23T08:19:01.781238"
+      "last_seen": "2026-04-24T08:30:42.799935"
     }
   },
   "ASI": {},
@@ -36,32 +30,39 @@
       "title": "GNCエンジニア /Guidance Navigation and Control Engineer",
       "url": "https://astroscale.bamboohr.com/careers/356",
       "first_seen": "2026-03-13T13:38:18.124100",
-      "last_seen": "2026-04-23T08:19:02.913611"
+      "last_seen": "2026-04-24T08:30:43.852696"
     },
     "6dc1590b1b80d795cae022584fde1ec7": {
       "title": "サテライトシステムエンジニア /Satellite System Enginner",
       "url": "https://astroscale.bamboohr.com/careers/548",
       "first_seen": "2026-03-13T13:38:18.124100",
-      "last_seen": "2026-04-23T08:19:02.913611"
+      "last_seen": "2026-04-24T08:30:43.852696"
     },
     "6e39c40180bd5e7dc5a9fdd52f007f60": {
       "title": "Ground Segment Systems Engineer",
       "url": "https://astroscale.bamboohr.com/careers/590",
       "first_seen": "2026-03-13T13:38:18.124100",
-      "last_seen": "2026-04-23T08:19:02.913611"
+      "last_seen": "2026-04-24T08:30:43.852696"
     },
     "1cb9dae4be524eb10d598fbd0706c071": {
       "title": "GNCハードウェアエンジニア/ GNC Hardware Engineer",
       "url": "https://astroscale.bamboohr.com/careers/598",
       "first_seen": "2026-03-13T13:38:18.124100",
-      "last_seen": "2026-04-23T08:19:02.913611"
+      "last_seen": "2026-04-24T08:30:43.852696"
     }
   },
   "Avio": {},
   "Beyond Gravity": {},
   "Boeing": {},
   "Capgemini": {},
-  "CesiumAstro": {},
+  "CesiumAstro": {
+    "c8f4c7838d0972506b244d67357dc170": {
+      "title": "Guidance, Navigation, & Control (GNC) Engineer II",
+      "url": "https://jobs.lever.co/CesiumAstro/0fcd4d71-12eb-47cf-a60c-26aff594ed87",
+      "first_seen": "2026-04-24T08:30:45.386962",
+      "last_seen": "2026-04-24T08:30:45.386962"
+    }
+  },
   "CLC Space": {},
   "Collins Aerospace": {},
   "Comat": {},
@@ -71,7 +72,7 @@
       "title": "Metop Spacecraft Operations Engineer [26048]",
       "url": "https://jobs.smartrecruiters.com/SopraSteria1/744000122211111",
       "first_seen": "2026-04-23T08:19:05.766311",
-      "last_seen": "2026-04-23T08:19:05.766311"
+      "last_seen": "2026-04-24T08:30:46.928239"
     }
   },
   "D-Orbit": {},
@@ -107,19 +108,19 @@
       "title": "Flight Operations Engineer – GEO Satellite Services",
       "url": "https://www.infiniteorbits.io/jobs/flight-operations-engineer-%E2%80%93-geo-satellite-services",
       "first_seen": "2026-03-21T08:43:26.446696",
-      "last_seen": "2026-04-23T08:19:09.552307"
+      "last_seen": "2026-04-24T08:30:49.755406"
     },
     "7333f2864499f33d3b1d883e59243223": {
       "title": "Electronics and Data System Engineer",
       "url": "https://www.infiniteorbits.io/jobs/electronics-and-data-system-engineer",
       "first_seen": "2026-03-21T08:43:26.446696",
-      "last_seen": "2026-04-23T08:19:09.552307"
+      "last_seen": "2026-04-24T08:30:49.755406"
     },
     "a9a79c4ee0a541ca26a8666ce7c67e76": {
       "title": "Camera and Optical System Engineer",
       "url": "https://www.infiniteorbits.io/jobs/camera-and-optical-system-engineer",
       "first_seen": "2026-03-21T08:43:26.446696",
-      "last_seen": "2026-04-23T08:19:09.552307"
+      "last_seen": "2026-04-24T08:30:49.755406"
     }
   },
   "Involve Space": {},
@@ -130,55 +131,55 @@
       "title": "Propulsion System Engineer",
       "url": "https://jobs.lever.co/ispace-inc/e6d49552-fdfc-46bc-b9e8-3bbd24930ad0",
       "first_seen": "2026-04-16T08:13:11.548468",
-      "last_seen": "2026-04-23T08:19:10.235362"
+      "last_seen": "2026-04-24T08:30:50.491249"
     },
     "2c417613a0c2a372efe95fa44ba35ce5": {
       "title": "RF / Communications Systems Engineer",
       "url": "https://jobs.lever.co/ispace-inc/c9521745-f5e5-4b64-b84f-c0ba5315c63a",
       "first_seen": "2026-04-16T08:13:11.548468",
-      "last_seen": "2026-04-23T08:19:10.235362"
+      "last_seen": "2026-04-24T08:30:50.491249"
     },
     "e80e0b6df5aa94b6018e26409cc7562b": {
       "title": "Space System Engineer",
       "url": "https://jobs.lever.co/ispace-inc/00202ba6-6cef-47e5-a9cb-bcb630439914",
       "first_seen": "2026-04-16T08:13:11.548468",
-      "last_seen": "2026-04-23T08:19:10.235362"
+      "last_seen": "2026-04-24T08:30:50.491249"
     },
     "d96bef002ee30c8cfaac6759c7d80c90": {
       "title": "Spacecraft Descent Guidance, Navigation, and Control Software Engineer",
       "url": "https://jobs.lever.co/ispace-inc/ee01712d-dfa6-4a91-8b5f-3c4af0c1fcfe",
       "first_seen": "2026-04-16T08:13:11.548468",
-      "last_seen": "2026-04-23T08:19:10.235362"
+      "last_seen": "2026-04-24T08:30:50.491249"
     },
     "0feddb505a5fffe9e6ddaabf376d539b": {
       "title": "Spacecraft Descent Guidance, Navigation, and Control System Engineer",
       "url": "https://jobs.lever.co/ispace-inc/08053e9d-cb73-44ff-9f3a-433a7db7e395",
       "first_seen": "2026-04-16T08:13:11.548468",
-      "last_seen": "2026-04-23T08:19:10.235362"
+      "last_seen": "2026-04-24T08:30:50.491249"
     },
     "240a74c2cdc346b651474c5383a40249": {
       "title": "Spacecraft Orbiter Guidance, Navigation, and Control Software Engineer",
       "url": "https://jobs.lever.co/ispace-inc/74a3f295-2eb8-489b-9834-ed80fb77aebd",
       "first_seen": "2026-04-16T08:13:11.548468",
-      "last_seen": "2026-04-23T08:19:10.235362"
+      "last_seen": "2026-04-24T08:30:50.491249"
     },
     "5af0f86cdfffcf3de56016bcd5a14f52": {
       "title": "Spacecraft Orbiter Guidance, Navigation, and Control System Engineer",
       "url": "https://jobs.lever.co/ispace-inc/364238ca-d4de-4619-9910-611a1d348f3f",
       "first_seen": "2026-04-16T08:13:11.548468",
-      "last_seen": "2026-04-23T08:19:10.235362"
+      "last_seen": "2026-04-24T08:30:50.491249"
     },
     "13d585fa8b0805510d8e53b47cf4f267": {
       "title": "Vision-Based Navigation Engineer",
       "url": "https://jobs.lever.co/ispace-inc/cd4368e2-8995-4513-abcc-9cc31e77c83a",
       "first_seen": "2026-04-16T08:13:11.548468",
-      "last_seen": "2026-04-23T08:19:10.235362"
+      "last_seen": "2026-04-24T08:30:50.491249"
     },
     "ff9c664225e180460ec1a74c9da5ecd9": {
       "title": "Spacecraft Descent Guidance, Navigation, and Control Sensor Engineer",
       "url": "https://jobs.lever.co/ispace-inc/1dde77d5-d164-4f1d-9ef6-a2e5f5883fbe",
       "first_seen": "2026-04-17T08:12:12.427823",
-      "last_seen": "2026-04-23T08:19:10.235362"
+      "last_seen": "2026-04-24T08:30:50.491249"
     }
   },
   "Kayser Italia": {},
@@ -193,19 +194,19 @@
       "title": "Backend Engineer - Mission Operations Services",
       "url": "https://jobs.lever.co/loftorbital/c6ac5dfa-5292-483c-adff-a8f17e79b7f5",
       "first_seen": "2026-04-21T08:16:41.570054",
-      "last_seen": "2026-04-23T08:19:10.701026"
+      "last_seen": "2026-04-24T08:30:51.298325"
     },
     "5cc6802535f6c3c50bad7b7952b9f2ac": {
       "title": "RF Systems Engineer",
       "url": "https://jobs.lever.co/loftorbital/5b19f777-fcaf-43fa-8dad-747df1dc5acc",
       "first_seen": "2026-04-21T08:16:41.570054",
-      "last_seen": "2026-04-23T08:19:10.701026"
+      "last_seen": "2026-04-24T08:30:51.298325"
     },
     "5cb5dd336184ec6e02ec4928e05411aa": {
       "title": "Satellite Operations Software Engineer",
       "url": "https://jobs.lever.co/loftorbital/664a2c37-e865-479c-ba51-2d946c8f209e",
       "first_seen": "2026-04-21T08:16:41.570054",
-      "last_seen": "2026-04-23T08:19:10.701026"
+      "last_seen": "2026-04-24T08:30:51.298325"
     }
   },
   "Look Up Space": {},
@@ -243,7 +244,7 @@
       "title": "5G DSP Systems EngineerTechnology·Barcelona·Hybrid",
       "url": "https://careers.sateliot.com/jobs/7016411-5g-dsp-systems-engineer",
       "first_seen": "2026-04-06T08:09:59.954115",
-      "last_seen": "2026-04-23T08:19:15.742703"
+      "last_seen": "2026-04-24T08:30:57.213924"
     }
   },
   "Satellite Vu": {},
